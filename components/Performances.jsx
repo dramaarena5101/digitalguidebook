@@ -192,6 +192,7 @@ const GAP = 16;
 
 function Slider({ items, onCardClick }) {
   const [idx, setIdx] = useState(0);
+  const trackRef = useRef(null);
   const total = items.length;
   const perPage = Math.max(1, Math.floor((typeof window !== "undefined" ? Math.min(window.innerWidth, 1280) - 128 : 960) / (CARD_W + GAP)));
   const maxIdx = Math.max(0, total - perPage);
@@ -224,11 +225,18 @@ function Slider({ items, onCardClick }) {
       </div>
 
       {/* Slider track */}
-      <div style={{ overflow: "hidden" }}>
+      <div style={{ overflow: "hidden" }} ref={trackRef}>
         <motion.div
+          drag="x"
+          dragConstraints={trackRef}
+          onDragEnd={(e, info) => {
+            if (info.offset.x < -50 && idx < maxIdx) next();
+            else if (info.offset.x > 50 && idx > 0) prev();
+          }}
           animate={{ x: -(idx * (CARD_W + GAP)) }}
           transition={{ type: "spring", damping: 30, stiffness: 260 }}
-          style={{ display: "flex", gap: GAP }}
+          style={{ display: "flex", gap: GAP, cursor: "grab" }}
+          whileTap={{ cursor: "grabbing" }}
         >
           {items.map((perf) => (
             <div key={perf.id} style={{ width: CARD_W, flexShrink: 0 }}>

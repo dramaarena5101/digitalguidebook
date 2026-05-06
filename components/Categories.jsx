@@ -102,9 +102,17 @@ export default function Categories() {
               const c = catColors[i % catColors.length];
               return (
                 <motion.div key={cat.name}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={1}
+                  onDragEnd={(e, info) => {
+                    if (info.offset.x < -50 && idx < maxIdx) setIdx(idx + 1);
+                    else if (info.offset.x > 50 && idx > 0) setIdx(idx - 1);
+                  }}
                   initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
-                  style={{ borderRadius: 24, background: "#fff", border: "1px solid #E5E7EB", overflow: "hidden" }}>
+                  style={{ borderRadius: 24, background: "#fff", border: "1px solid #E5E7EB", overflow: "hidden", cursor: "grab" }}
+                  whileTap={{ cursor: "grabbing" }}>
 
                   {/* Top accent bar */}
                   <div style={{ height: 4, background: `linear-gradient(to right, ${c.text}, ${c.text}88)` }} />
