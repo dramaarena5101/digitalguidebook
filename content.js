@@ -115,6 +115,23 @@ export const performances = [
     description: 'Band Drama Arena 5101 yang akan membawakan lagu penyemangat band Lomba Sihir yang berjudul "Lomba Sihir!"',
     emoji: "🎸",
     color: "#e85d04",
+    lyrics: `Dunia ini terlalu serius untuk diratapi
+Mari kita tertawa walau sesaat saja
+Aku ingin menang tapi aku tak sanggup
+Semua orang terlihat lebih unggul dariku
+
+Tapi aku tak mau menyerah begitu saja
+Aku akan berdiri walau berkali-kali jatuh
+Ini bukan soal menang atau kalah
+Ini soal keberanian untuk tetap berdiri
+
+[Chorus]
+Ayo kita lomba sihir!
+Siapa yang paling berani?
+Ayo kita buktikan
+Bahwa kita bisa bersinar!
+
+(Catatan: Lirik lengkap mengikuti aransemen Band 5101)`,
   },
   {
     id: 3,
@@ -127,6 +144,24 @@ export const performances = [
     description: "Pembawa acara yang akan membuka acara Drama Arena dengan menggunakan 3 bahasa yang memukau!",
     emoji: "🎤",
     color: "#FF6B00",
+    mcScript: `[Bahasa Indonesia]
+Assalamu'alaikum Warahmatullahi Wabarakatuh.
+Selamat malam dan salam sejahtera untuk seluruh hadirin yang kami muliakan.
+Malam ini kita berkumpul dalam satu momen bersejarah — Drama Arena 5101.
+Menyalakan api kebersamaan, mewujudkan idealisme kehidupan.
+
+[Bahasa Arab — العربية]
+أيها الحضور الكرام، أهلاً وسهلاً بكم في حفل "ميدان الدراما" للصف الخامس.
+نرجو أن يكون هذا الحفل مفيداً ومثيراً لجميع الحاضرين.
+
+[Bahasa Inggris]
+Ladies and gentlemen, honored guests, and beloved teachers —
+Welcome to Drama Arena 5101: Five A Hundred One!
+Tonight, we light the flame of togetherness.
+Tonight, we realize the idealism of life.
+Let the show begin!
+
+(Catatan: Teks lengkap mengikuti arahan pembimbing MC)`,
   },
   {
     id: 4,
@@ -139,6 +174,16 @@ export const performances = [
     description: "Lantunan ayat suci Allah yang akan mengawali acara, memohon keberkahan dan kelancaran kepada Allah SWT. Qori' akan membacakan Qur'an Surah Ali 'Imran ayat 133-136.",
     emoji: "📖",
     color: "#cc4400",
+    mcScript: `Surah: Ali 'Imran (آل عمران)
+Ayat: 133 – 136
+
+وَسَارِعُوٓا۟ إِلَىٰ مَغْفِرَةٍ مِّن رَّبِّكُمْ وَجَنَّةٍ عَرْضُهَا ٱلسَّمَٰوَٰتُ وَٱلْأَرْضُ أُعِدَّتْ لِلْمُتَّقِينَ (١٣٣)
+
+ٱلَّذِينَ يُنفِقُونَ فِى ٱلسَّرَّآءِ وَٱلضَّرَّآءِ وَٱلْكَٰظِمِينَ ٱلْغَيْظَ وَٱلْعَافِينَ عَنِ ٱلنَّاسِ ۗ وَٱللَّهُ يُحِبُّ ٱلْمُحْسِنِينَ (١٣٤)
+
+وَٱلَّذِينَ إِذَا فَعَلُوا۟ فَٰحِشَةً أَوْ ظَلَمُوٓا۟ أَنفُسَهُمْ ذَكَرُوا۟ ٱللَّهَ فَٱسْتَغْفَرُوا۟ لِذُنُوبِهِمْ وَمَن يَغْفِرُ ٱلذُّنُوبَ إِلَّا ٱللَّهُ وَلَمْ يُصِرُّوا۟ عَلَىٰ مَا فَعَلُوا۟ وَهُمْ يَعْلَمُونَ (١٣٥)
+
+أُو۟لَٰٓئِكَ جَزَآؤُهُم مَّغْفِرَةٌ مِّن رَّبِّهِمْ وَجَنَّٰتٌ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَٰرُ خَٰلِدِينَ فِيهَا ۚ وَنِعْمَ أَجْرُ ٱلْعَٰمِلِينَ (١٣٦)`,
   },
   {
     id: 5,
@@ -184,9 +229,14 @@ export const performances = [
     category: "Seni Musik & Suara",
     participants: 43,
     supervisors: ["Al-Ustadz Moh. Yusuf Ubaidillah", "Al-Ustadz M. Haidar Al-Wa'ie", "Al-Ustadz Muhammad Avisena"],
-    description: "Paduan suara 5101 yang akan membawakan tiga lagu syahdu sekaligus.",
+    description: "Paduan suara 5101 yang akan membawakan tiga lagu syahdu sekaligus dengan aransemen yang memukau.",
     emoji: "🎶",
     color: "#cc4400",
+    songs: [
+      { title: "Mars Darussalam", desc: "Lagu kebanggaan dan identitas Pondok Modern Darussalam Gontor" },
+      { title: "Spontan (Uhuy)", desc: "Lagu ceria penuh semangat tentang kehidupan di Darussalam" },
+      { title: "Ini Abadi", desc: "Lagu penuh makna tentang kenangan indah yang tak akan terlupakan" },
+    ],
   },
   {
     id: 9,
@@ -199,6 +249,23 @@ export const performances = [
     description: "Nasyid syahdu yang akan membawakan lagu untuk mengajak kita mensyukuri segala nikmat yang telah diberikan oleh Allah SWT.",
     emoji: "🤲",
     color: "#FF6B00",
+    lyrics: `Alhamdulillah, syukur kepada-Mu
+Atas segala nikmat yang Kau beri
+Tiada kata yang mampu mengungkap
+Betapa besar kasih sayang-Mu, ya Rabb
+
+Di setiap langkah yang kami jejaki
+Di setiap nafas yang kami hembuskan
+Ada tangan-Mu yang senantiasa menopang
+Ada cahaya-Mu yang selalu menerangi
+
+[Chorus]
+Syukur Alhamdulillah, Alhamdulillah
+Atas semua yang Engkau berikan
+Syukur Alhamdulillah, Alhamdulillah
+Hati ini penuh dengan rasa terima kasih
+
+(Catatan: Lirik lengkap mengikuti aransemen Nasyid 5101)`,
   },
   {
     id: 10,
@@ -295,6 +362,23 @@ export const performances = [
     description: 'Penampilan musikal oleh Band Drama Arena 5101 yang akan membawakan lagu berjudul "Tangguh".',
     emoji: "🎸",
     color: "#FF6B00",
+    lyrics: `Kami datang dari jauh
+Membawa mimpi dan harapan
+Meski jalan tak selalu mulus
+Kami tetap berdiri dengan tegar
+
+Tangguh bukan berarti tak pernah jatuh
+Tangguh adalah bangkit setiap kali tersungkur
+Tangguh adalah percaya bahwa badai pasti berlalu
+Dan matahari akan bersinar kembali
+
+[Chorus]
+Kami tangguh, kami kuat
+Tak ada rintangan yang tak bisa dilalui
+Kami tangguh, kami satu
+Bersama menuju cahaya yang nyata
+
+(Catatan: Lirik lengkap mengikuti aransemen Band 5101)`,
   },
   {
     id: 18,
@@ -422,34 +506,56 @@ export const performances = [
     name: 'Grand Closing: "Api Perjuangan"',
     duration: "5 Menit",
     category: "Seni Musik & Suara",
-    participants: -1, // All students
+    participants: -1,
     supervisors: ["Al-Ustadz M. Radja Althafa"],
-    description: 'Nafas terakhir Drama Arena 5101 yang ditandai dengan menyanyikan lagu "Api Perjuangan" dengan khidmat.',
+    description: 'Nafas terakhir Drama Arena 5101 yang ditandai dengan menyanyikan lagu "Api Perjuangan" dengan khidmat oleh seluruh siswa kelas 5 KMI bersama-sama.',
     emoji: "🏆",
     color: "#cc4400",
+    lyrics: `Api perjuangan menyala dalam dada
+Tak pernah padam walau angin berhembus kencang
+Kami adalah pelita di ujung jalan
+Kami adalah harapan yang tak boleh padam
+
+Gontor telah tempa kami menjadi baja
+Dalam api yang membakar, kami justru menyala
+Bukan untuk diri sendiri kami berjuang
+Tapi untuk agama, bangsa, dan sesama
+
+[Chorus]
+Api perjuangan, nyalakan terus
+Jangan biarkan ia padam dalam hatimu
+Api perjuangan, warisan leluhur
+Bawa ia hingga ke ujung dunia
+
+Kami kelas 5, kami Drama Arena
+5101 — Five A Hundred One
+Nyalakan api kebersamaan
+Wujudkan idealisme kehidupan!
+
+(Dinyanyikan bersama seluruh siswa kelas 5 KMI)`,
   },
 ];
 
 export const categories = [
   {
     name: "Seni Musik & Suara",
-    items: ["Senandung Sholawat", "Tilawah Ayat Suci Al-Qur'an", "Band 5101", "Choir 5101", "Nasyid 5101"],
-    icon: "🎵",
+    desc: "Persembahan melodi, harmoni, dan keindahan suara — dari senandung sholawat hingga penampilan band modern yang mengguncang panggung.",
+    items: ["Senandung Sholawat", "Tilawah Ayat Suci Al-Qur'an", "Band 5101: Lomba Sihir!", "Grand Opening: OST DA 5101", "Choir 5101", "Nasyid 5101", "Band 5101: Tangguh", "Band 5101: Medley Tongkrongan", "Grand Closing: Api Perjuangan"],
   },
   {
     name: "Seni Tari & Atraksi",
-    items: ["Ya Maulay Ya Maulay", "Black Mask Rhythm", "Tong Basudara", "Udal Adul Wel", "SKA N Dut", "Tari Ratoeh Jaroe", "Raqs Arabian", "HikaruToki DA", "Le Le Re Dance", "Infinity Beatbox", "Art of Balance"],
-    icon: "💃",
+    desc: "Gerak tubuh yang ekspresif memadukan tradisi dan modernitas, dari tari Melayu, tari India, tari Arab, hingga atraksi juggling yang memukau.",
+    items: ["Ya Maulay Ya Maulay", "Black Mask Rhythm", "Tong Basudara", "Udal Adul Well", "SKA N DUT", "Tari Ratoeh Jaroe", "Raqs Arabian", "Hikaru Toki DA", "Le Le Re Dance", "Infinity Beatbox", "Art of Balance"],
   },
   {
     name: "Seni Theater",
-    items: ["Drama POV 1-5", "Puisi 5101"],
-    icon: "🎭",
+    desc: "Kisah-kisah kehidupan nyata santri yang dihidupkan di atas panggung — mengisahkan Bintang, Azka, Mudabbir, Atlan, dan Pijar dalam 5 sudut pandang yang berbeda.",
+    items: ["Drama POV 1 = Bintang", "Drama POV 2 = Azka", "Drama POV 3 = Mudabbir", "Drama POV 4 = Atlan", "Drama POV 5 = Pijar", 'Puisi: "Antara Uswah dan Amanah"'],
   },
   {
     name: "Seni Bahasa & Literasi",
-    items: ["Master of Ceremony", "Sambutan Ketua Drama Arena", "Puisi 5101"],
-    icon: "📖",
+    desc: "Kekuatan kata-kata dalam 3 bahasa — Indonesia, Arab, dan Inggris — hadir melalui MC berbahasa tiga dan sambutan yang penuh makna.",
+    items: ["Master of Ceremony (3 Bahasa)", "Sambutan Ketua Drama Arena", "Sambutan Bapak Pimpinan"],
   },
 ];
 

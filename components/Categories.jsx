@@ -1,80 +1,174 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
 import { categories } from "../content";
 
-const S = {
-  section: { padding: "6rem 1.5rem", background: "#F9FAFB", borderTop: "1px solid #F3F4F6" },
-  inner: { maxWidth: 1280, margin: "0 auto" },
-  heading: { fontFamily: "'Bebas Neue', cursive", letterSpacing: "0.05em", color: "#111827", lineHeight: 0.9, fontSize: "clamp(44px, 7vw, 88px)" },
+const FONT = { neulis: "'Plus Jakarta Sans', sans-serif", bebas: "'Bebas Neue', cursive" };
+const CARD_W = 280;
+const GAP = 20;
+
+const catIcons = {
+  "Seni Musik & Suara": (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+    </svg>
+  ),
+  "Seni Tari & Atraksi": (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><path d="M6.5 8a2 2 0 0 0-1.905 1.382L3 14l2 1 1.5-3v8h2v-5h3v5h2V12l1.5 3 2-1-1.595-4.618A2 2 0 0 0 11.5 8z"/>
+    </svg>
+  ),
+  "Seni Theater": (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 10s3-3 6-3 6 3 6 3v4s-3 3-6 3-6-3-6-3v-4z"/><path d="M14 10s3-3 6-3v7s-3 3-6 3"/>
+    </svg>
+  ),
+  "Seni Bahasa & Literasi": (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+    </svg>
+  ),
 };
 
-function Fade({ children, delay = 0, style = {} }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+const catColors = [
+  { text: "#FF6B00", bg: "#FFF0E6", border: "#FDDCBF" },
+  { text: "#EA580C", bg: "#FFF3ED", border: "#FED7AA" },
+  { text: "#DC2626", bg: "#FFF1F2", border: "#FECDD3" },
+  { text: "#D97706", bg: "#FFFBEB", border: "#FDE68A" },
+];
+
+function NavBtn({ onClick, disabled, children }) {
   return (
-    <motion.div ref={ref} initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }} style={style}>
+    <button onClick={onClick} disabled={disabled} style={{ width: 40, height: 40, borderRadius: "50%", border: "1.5px solid #E5E7EB", background: disabled ? "#F9FAFB" : "#fff", cursor: disabled ? "default" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: disabled ? "#D1D5DB" : "#111827", transition: "all 0.2s", flexShrink: 0 }}
+      onMouseEnter={e => { if (!disabled) { e.currentTarget.style.background = "#FF6B00"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#FF6B00"; } }}
+      onMouseLeave={e => { e.currentTarget.style.background = disabled ? "#F9FAFB" : "#fff"; e.currentTarget.style.color = disabled ? "#D1D5DB" : "#111827"; e.currentTarget.style.borderColor = "#E5E7EB"; }}>
       {children}
-    </motion.div>
+    </button>
   );
 }
 
 export default function Categories() {
+  const [idx, setIdx] = useState(0);
+  const total = categories.length;
+  const perPage = 1; // Show 1 category at a time on mobile, adapted
+  const maxIdx = Math.max(0, total - 1);
+
   return (
-    <section id="categories" style={S.section}>
-      <div style={S.inner}>
+    <section id="categories" style={{ padding: "6rem 1.5rem", background: "#F9FAFB", borderTop: "1px solid #F3F4F6" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
 
         {/* Header */}
-        <Fade style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 24, marginBottom: "4rem" }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 24, marginBottom: "3.5rem" }}>
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
               <div style={{ width: 36, height: 1, background: "#FF6B00" }} />
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#FF6B00" }}>Bab 03</span>
+              <span style={{ fontFamily: FONT.neulis, fontSize: 11, fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#FF6B00" }}>Bab 03</span>
             </div>
-            <h2 style={S.heading}>KATEGORI <span style={{ color: "#9CA3AF" }}>SENI</span></h2>
+            <h2 style={{ fontFamily: FONT.bebas, letterSpacing: "0.05em", color: "#111827", lineHeight: 0.9, fontSize: "clamp(44px, 7vw, 88px)" }}>
+              KATEGORI <span style={{ color: "#9CA3AF" }}>SENI</span>
+            </h2>
           </div>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "#6B7280", maxWidth: 380, lineHeight: 1.8 }}>
-            Eksplorasi beragam medium ekspresi kreativitas dalam panggung Drama Arena 5101.
+          <p style={{ fontFamily: FONT.neulis, fontSize: 15, color: "#6B7280", maxWidth: 360, lineHeight: 1.8 }}>
+            Eksplorasi 4 medium ekspresi seni dalam panggung Drama Arena 5101.
           </p>
-        </Fade>
+        </motion.div>
 
-        {/* Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20 }}>
-          {categories.map((cat, i) => (
-            <Fade key={cat.name} delay={i * 0.08}>
-              <div
-                style={{ borderRadius: 20, background: "#fff", border: "1px solid #E5E7EB", padding: "2rem", height: "100%", display: "flex", flexDirection: "column", transition: "box-shadow 0.3s, transform 0.3s", cursor: "default" }}
-                onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.09)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
-                onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >
-                {/* Icon */}
-                <div style={{ width: 52, height: 52, borderRadius: 14, background: "#F9FAFB", border: "1px solid #E5E7EB", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, marginBottom: 20 }}>
-                  {cat.icon}
-                </div>
+        {/* Slider nav header */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+          <div style={{ display: "flex", gap: 8 }}>
+            {categories.map((_, i) => (
+              <button key={i} onClick={() => setIdx(i)} style={{
+                width: i === idx ? 32 : 8, height: 8, borderRadius: 999,
+                background: i === idx ? "#FF6B00" : "#E5E7EB", border: "none",
+                cursor: "pointer", transition: "all 0.3s", padding: 0
+              }} />
+            ))}
+          </div>
+          <div style={{ display: "flex", gap: 8 }}>
+            <NavBtn onClick={() => setIdx(i => Math.max(0, i - 1))} disabled={idx === 0}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </NavBtn>
+            <NavBtn onClick={() => setIdx(i => Math.min(maxIdx, i + 1))} disabled={idx >= maxIdx}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </NavBtn>
+          </div>
+        </div>
 
-                {/* Name */}
-                <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 20, fontWeight: 800, color: "#111827", marginBottom: 16, lineHeight: 1.25 }}>
-                  {cat.name}
-                </div>
+        {/* Slider track */}
+        <div style={{ overflow: "hidden", borderRadius: 24 }}>
+          <AnimatePresence mode="wait">
+            {categories.map((cat, i) => {
+              if (i !== idx) return null;
+              const c = catColors[i % catColors.length];
+              return (
+                <motion.div key={cat.name}
+                  initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  style={{ borderRadius: 24, background: "#fff", border: "1px solid #E5E7EB", overflow: "hidden" }}>
 
-                {/* Items */}
-                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10, marginBottom: 16, flex: 1 }}>
-                  {cat.items.slice(0, 3).map(item => (
-                    <li key={item} style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: "'Inter', sans-serif", fontSize: 13, color: "#6B7280", fontWeight: 500 }}>
-                      <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#FF6B00", flexShrink: 0, opacity: 0.7 }} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                  {/* Top accent bar */}
+                  <div style={{ height: 4, background: `linear-gradient(to right, ${c.text}, ${c.text}88)` }} />
 
-                {cat.items.length > 3 && (
-                  <div style={{ paddingTop: 14, borderTop: "1px solid #F3F4F6", fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.15em", textTransform: "uppercase" }}>
-                    + {cat.items.length - 3} Lainnya
+                  <div style={{ padding: "2.5rem", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px,1fr))", gap: 32, alignItems: "start" }}>
+                    {/* Left: info */}
+                    <div>
+                      <div style={{ width: 64, height: 64, borderRadius: 18, background: c.bg, border: `1px solid ${c.border}`, display: "flex", alignItems: "center", justifyContent: "center", color: c.text, marginBottom: 20 }}>
+                        {catIcons[cat.name] || catIcons["Seni Musik & Suara"]}
+                      </div>
+                      <div style={{ fontFamily: FONT.neulis, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 8 }}>
+                        Kategori {String(i + 1).padStart(2, "0")} dari {total}
+                      </div>
+                      <h3 style={{ fontFamily: FONT.bebas, fontSize: "clamp(28px,4vw,48px)", letterSpacing: "0.05em", color: "#111827", lineHeight: 1, marginBottom: 16 }}>
+                        {cat.name.toUpperCase()}
+                      </h3>
+                      <p style={{ fontFamily: FONT.neulis, fontSize: 14, color: "#6B7280", lineHeight: 1.75, marginBottom: 24 }}>
+                        {cat.desc || `Menampilkan ${cat.items.length} penampilan unggulan dari cabang ${cat.name}.`}
+                      </p>
+                      <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "0.5rem 1.25rem", borderRadius: 999, background: c.bg, border: `1px solid ${c.border}`, fontFamily: FONT.neulis, fontSize: 11, fontWeight: 700, color: c.text }}>
+                        <span style={{ width: 6, height: 6, borderRadius: "50%", background: c.text }} />
+                        {cat.items.length} Penampilan
+                      </div>
+                    </div>
+
+                    {/* Right: items */}
+                    <div>
+                      <div style={{ fontFamily: FONT.neulis, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 16 }}>Daftar Penampilan</div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        {cat.items.map((item, j) => (
+                          <motion.div key={item}
+                            initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: j * 0.05, duration: 0.3 }}
+                            style={{ display: "flex", alignItems: "center", gap: 12, padding: "0.75rem 1rem", borderRadius: 12, background: "#F9FAFB", border: "1px solid #F3F4F6", transition: "all 0.2s" }}
+                            onMouseEnter={e => { e.currentTarget.style.background = c.bg; e.currentTarget.style.borderColor = c.border; }}
+                            onMouseLeave={e => { e.currentTarget.style.background = "#F9FAFB"; e.currentTarget.style.borderColor = "#F3F4F6"; }}>
+                            <span style={{ fontFamily: FONT.bebas, fontSize: 16, color: c.text, flexShrink: 0 }}>{String(j + 1).padStart(2, "0")}</span>
+                            <span style={{ fontFamily: FONT.neulis, fontSize: 13, fontWeight: 600, color: "#374151" }}>{item}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                )}
-              </div>
-            </Fade>
-          ))}
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
+
+        {/* Bottom tabs */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 20 }}>
+          {categories.map((cat, i) => {
+            const c = catColors[i % catColors.length];
+            return (
+              <button key={cat.name} onClick={() => setIdx(i)} style={{
+                padding: "0.6rem 1.25rem", borderRadius: 999, border: "1.5px solid",
+                fontFamily: FONT.neulis, fontSize: 11, fontWeight: 700, cursor: "pointer", transition: "all 0.2s",
+                background: idx === i ? c.bg : "#fff", color: idx === i ? c.text : "#9CA3AF",
+                borderColor: idx === i ? c.border : "#E5E7EB",
+              }}>
+                {cat.name}
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>
