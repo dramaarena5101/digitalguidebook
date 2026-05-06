@@ -9,10 +9,10 @@ export default function LoadingScreen({ onDone }) {
     // Count up to 100
     const interval = setInterval(() => {
       setProgress(p => {
-        if (p >= 100) {
+        if (p >= 101) {
           clearInterval(interval);
           setTimeout(() => setPhase(1), 200);
-          return 100;
+          return 101;
         }
         return p + Math.random() * 6 + 2;
       });
@@ -61,15 +61,16 @@ export default function LoadingScreen({ onDone }) {
                       cx="50" cy="50" r="44" fill="none" stroke="#FF6B00" strokeWidth="4"
                       strokeLinecap="round"
                       strokeDasharray={276.46}
-                      animate={{ strokeDashoffset: 276.46 * (1 - Math.min(progress, 100) / 100) }}
+                      animate={{ strokeDashoffset: 276.46 * (1 - Math.min(progress, 101) / 101) }}
                       transition={{ duration: 0.1 }}
                     />
                   </svg>
                   <div style={{
                     position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
-                    fontFamily: "'Bebas Neue', cursive", fontSize: 28, color: "#111827"
+                    fontFamily: "'Bebas Neue', cursive", fontSize: 24, color: "#111827", gap: 4
                   }}>
-                    {Math.min(Math.round(progress), 100)}
+                    <span style={{ color: "#FF6B00", fontSize: 18, marginTop: -4 }}>5</span>
+                    <span>{Math.min(Math.round(progress), 101)}</span>
                   </div>
                 </div>
 
@@ -85,7 +86,7 @@ export default function LoadingScreen({ onDone }) {
                 {/* Progress bar */}
                 <div style={{ width: 200, height: 2, background: "#F3F4F6", borderRadius: 999, overflow: "hidden" }}>
                   <motion.div
-                    animate={{ width: `${Math.min(progress, 100)}%` }}
+                    animate={{ width: `${Math.min(progress, 101) / 101 * 100}%` }}
                     transition={{ duration: 0.15 }}
                     style={{ height: "100%", background: "#FF6B00", borderRadius: 999 }}
                   />
