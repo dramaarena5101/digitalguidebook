@@ -11,7 +11,7 @@ import { Ticker, Footer } from "./components/Footer";
 
 export default function App() {
   return (
-    <div style={{ background: "#0A0A0A", minHeight: "100vh" }}>
+    <div className="bg-da-black min-h-screen text-da-text font-syne">
       <Navbar />
       <Hero />
       <Ticker />

@@ -1,5 +1,4 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { performances } from "../content";
 
 const rundown = [
@@ -45,13 +44,21 @@ const rundown = [
   { no: 40, item: 'Grand Closing: "Api Perjuangan"', type: "music" },
 ];
 
-const typeColors = {
-  music: "#FF6B00",
-  dance: "#e85d04",
-  theater: "#cc4400",
-  language: "#FF8C35",
-  visual: "#555",
+const typeStyles = {
+  music: "text-da-orange border-da-orange/20",
+  dance: "text-orange-500 border-orange-500/20",
+  theater: "text-red-500 border-red-500/20",
+  language: "text-yellow-500 border-yellow-500/20",
+  visual: "text-gray-500 border-gray-500/20",
 };
+
+const dotColors = {
+  music: "bg-da-orange",
+  dance: "bg-orange-500",
+  theater: "bg-red-500",
+  language: "bg-yellow-500",
+  visual: "bg-gray-500",
+}
 
 const typeLabels = {
   music: "Musik",
@@ -63,21 +70,23 @@ const typeLabels = {
 
 export default function RundownSequence() {
   return (
-    <section id="rundown" className="py-24 px-4" style={{ background: "#0A0A0A" }}>
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
+    <section id="rundown" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-[#030303] relative border-t border-white/5">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex items-center gap-4 mb-16"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24"
         >
-          <div className="w-10 h-10 flex items-center justify-center rounded text-sm font-bold" style={{ background: "#FF6B00", color: "#fff", fontFamily: "'Bebas Neue', cursive", fontSize: "16px" }}>06</div>
-          <div>
-            <div className="text-xs tracking-[0.3em] uppercase mb-1" style={{ color: "#FF6B00", fontFamily: "'Inter', sans-serif" }}>Section</div>
-            <h2 className="text-4xl md:text-5xl font-bold" style={{ fontFamily: "'Bebas Neue', cursive", letterSpacing: "0.05em" }}>Susunan Acara</h2>
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-10 h-px bg-da-orange" />
+              <span className="text-sm md:text-base tracking-[0.3em] uppercase text-da-orange font-inter font-bold">Bab 07</span>
+            </div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold font-bebas tracking-wider text-white leading-tight">
+              SUSUNAN <span className="text-gray-600">ACARA</span>
+            </h2>
           </div>
-          <div className="flex-1 h-px ml-4 hidden md:block" style={{ background: "linear-gradient(90deg, #FF6B00, transparent)" }} />
         </motion.div>
 
         {/* Legend */}
@@ -85,55 +94,51 @@ export default function RundownSequence() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="flex flex-wrap gap-3 mb-8"
+          className="flex flex-wrap gap-4 mb-12 p-4 md:p-6"
         >
           {Object.entries(typeLabels).map(([k, v]) => (
-            <div key={k} className="flex items-center gap-1.5 text-xs" style={{ fontFamily: "'Inter', sans-serif", color: "#888" }}>
-              <span className="w-2 h-2 rounded-full" style={{ background: typeColors[k] }} />
+            <div key={k} className="flex items-center gap-3 text-sm font-inter text-gray-400 bg-white/[0.02] px-6 py-3 rounded-full border border-white/5">
+              <span className={`w-2 h-2 rounded-full ${dotColors[k]}`} />
               {v}
             </div>
           ))}
         </motion.div>
 
         {/* Rundown list */}
-        <div className="space-y-2">
-          {rundown.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.4, delay: (i % 10) * 0.03 }}
-              className="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200"
-              style={{
-                background: item.type === "visual" ? "transparent" : "#111",
-                border: item.type === "visual" ? "1px solid #161616" : "1px solid #1f1f1f",
-                opacity: item.type === "visual" ? 0.6 : 1,
-              }}
-              onMouseEnter={e => {
-                if (item.type !== "visual") e.currentTarget.style.borderColor = typeColors[item.type];
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = item.type === "visual" ? "#161616" : "#1f1f1f";
-              }}
-            >
-              <span
-                className="w-7 h-7 flex-shrink-0 rounded-full flex items-center justify-center text-xs font-bold"
-                style={{ background: `${typeColors[item.type]}20`, color: typeColors[item.type], fontFamily: "'Inter', sans-serif" }}
+        <div className="space-y-4 md:space-y-6">
+          {rundown.map((item, i) => {
+            const isVisual = item.type === "visual";
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.8, delay: (i % 10) * 0.05, ease: "easeOut" }}
+                className={`flex items-center gap-6 sm:gap-8 px-6 py-5 md:py-6 rounded-3xl transition-all duration-300 group ${
+                  isVisual 
+                    ? "bg-transparent border border-transparent hover:bg-white/[0.02]" 
+                    : "bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.04]"
+                }`}
               >
-                {String(item.no).padStart(2, "0")}
-              </span>
-              <span className="flex-1 text-sm" style={{ fontFamily: "'Inter', sans-serif", color: "#E8E8E8" }}>
-                {item.item}
-              </span>
-              <span
-                className="text-xs px-2 py-0.5 rounded-full hidden sm:block"
-                style={{ background: `${typeColors[item.type]}15`, color: typeColors[item.type], fontFamily: "'Inter', sans-serif" }}
-              >
-                {typeLabels[item.type]}
-              </span>
-            </motion.div>
-          ))}
+                <div className={`w-12 h-12 md:w-14 md:h-14 flex-shrink-0 rounded-2xl flex items-center justify-center text-base md:text-lg font-bold border ${typeStyles[item.type]} bg-white/[0.01]`}>
+                  {String(item.no).padStart(2, "0")}
+                </div>
+                
+                <div className="flex-1">
+                  <span className={`text-base md:text-lg lg:text-xl font-inter ${isVisual ? "text-gray-500 italic" : "text-gray-200 group-hover:text-white font-medium"}`}>
+                    {item.item}
+                  </span>
+                </div>
+                
+                <span
+                  className={`text-xs md:text-sm px-4 py-2 rounded-full uppercase tracking-[0.2em] font-inter border hidden sm:block ${typeStyles[item.type]} bg-white/[0.01]`}
+                >
+                  {typeLabels[item.type]}
+                </span>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
