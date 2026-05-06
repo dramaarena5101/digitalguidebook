@@ -1,57 +1,58 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { judges } from "../content";
 
 export default function Judges() {
   return (
-    <section id="judges" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-[#030303] relative border-t border-white/5">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24"
-        >
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-10 h-px bg-da-orange" />
-              <span className="text-sm md:text-base tracking-[0.3em] uppercase text-da-orange font-inter font-bold">Bab 06</span>
-            </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold font-bebas tracking-wider text-white leading-tight">
-              NAMA-NAMA <span className="text-gray-600">JURI</span>
-            </h2>
+    <section id="judges" style={{ padding: "6rem 1.5rem", background: "#fff", borderTop: "1px solid #F3F4F6" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+
+        {/* Header */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          style={{ marginBottom: "4rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+            <div style={{ width: 36, height: 1, background: "#FF6B00" }} />
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#FF6B00" }}>Bab 06</span>
           </div>
+          <h2 style={{ fontFamily: "'Bebas Neue', cursive", letterSpacing: "0.05em", color: "#111827", lineHeight: 0.9, fontSize: "clamp(44px, 7vw, 88px)" }}>
+            NAMA-NAMA <span style={{ color: "#9CA3AF" }}>JURI</span>
+          </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
-          {judges.map((judge, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: i * 0.1, ease: "easeOut" }}
-              className="p-10 md:p-14 rounded-[2.5rem] transition-all duration-300 bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.04] hover:border-white/10 group"
-            >
-              <div className="flex flex-col sm:flex-row items-start gap-8 md:gap-10">
-                <div className="text-6xl lg:text-7xl font-bebas text-white/10 group-hover:text-da-orange/30 transition-colors">
-                  {String(judge.no).padStart(2, "0")}
-                </div>
-                <div className="flex-1 w-full">
-                  <h3 className="font-bold mb-6 text-xl lg:text-2xl tracking-wide text-da-orange font-syne uppercase">
-                    {judge.category}
-                  </h3>
-                  <div className="flex flex-col gap-4">
-                    {judge.members.map((m, j) => (
-                      <div key={j} className="flex items-center gap-4 text-base md:text-lg text-gray-400 font-inter group/item hover:text-white transition-colors">
-                        <span className="w-2 h-px bg-gray-600 group-hover/item:bg-white group-hover/item:w-4 transition-all" />
-                        <span className="leading-relaxed">{m}</span>
-                      </div>
-                    ))}
+        {/* Grid */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
+          {judges.map((judge, i) => {
+            const ref = useRef(null);
+            const inView = useInView(ref, { once: true, margin: "-60px" });
+            return (
+              <motion.div key={i} ref={ref}
+                initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                style={{ padding: "2rem 2.5rem", borderRadius: 20, background: "#F9FAFB", border: "1px solid #E5E7EB", transition: "box-shadow 0.3s, transform 0.3s" }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.08)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                <div style={{ display: "flex", gap: 20, alignItems: "flex-start" }}>
+                  <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 56, color: "#E5E7EB", lineHeight: 1, flexShrink: 0 }}>
+                    {String(judge.no).padStart(2, "0")}
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 15, fontWeight: 800, color: "#FF6B00", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 16, lineHeight: 1.3 }}>
+                      {judge.category}
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                      {judge.members.map((m, j) => (
+                        <div key={j} style={{ display: "flex", alignItems: "center", gap: 12, fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 500, color: "#374151" }}>
+                          <span style={{ width: 18, height: 1, background: "#D1D5DB", flexShrink: 0 }} />
+                          {m}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

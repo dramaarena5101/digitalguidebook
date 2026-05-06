@@ -2,54 +2,59 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { performances } from "../content";
 
-const categoryColors = {
-  "Seni Musik & Suara": "text-da-orange bg-da-orange/5 border-da-orange/10 group-hover:border-da-orange/30",
-  "Seni Tari & Atraksi": "text-orange-500 bg-orange-500/5 border-orange-500/10 group-hover:border-orange-500/30",
-  "Seni Theater": "text-red-500 bg-red-500/5 border-red-500/10 group-hover:border-red-500/30",
-  "Seni Bahasa & Literasi": "text-yellow-500 bg-yellow-500/5 border-yellow-500/10 group-hover:border-yellow-500/30",
-  "Seni Musik": "text-da-orange bg-da-orange/5 border-da-orange/10 group-hover:border-da-orange/30",
+const catColor = {
+  "Seni Musik & Suara": "#FF6B00",
+  "Seni Musik":          "#FF6B00",
+  "Seni Tari & Atraksi": "#EA580C",
+  "Seni Theater":        "#DC2626",
+  "Seni Bahasa & Literasi": "#D97706",
+};
+const catBg = {
+  "Seni Musik & Suara": "#FFF0E6",
+  "Seni Musik":          "#FFF0E6",
+  "Seni Tari & Atraksi": "#FFF3ED",
+  "Seni Theater":        "#FFF1F2",
+  "Seni Bahasa & Literasi": "#FFFBEB",
 };
 
-function PerformanceCard({ perf, onClick, index }) {
+function Card({ perf, onClick, index }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
-
-  const catStyle = categoryColors[perf.category] || categoryColors["Seni Musik & Suara"];
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const color = catColor[perf.category] || "#FF6B00";
+  const bg = catBg[perf.category] || "#FFF0E6";
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: (index % 4) * 0.05 }}
+    <motion.div ref={ref}
+      initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: (index % 4) * 0.06 }}
       onClick={() => onClick(perf)}
-      className="cursor-pointer rounded-3xl p-8 bg-white/[0.02] border border-white/[0.05] transition-all duration-300 group hover:bg-white/[0.04] hover:border-white/10 flex flex-col h-full"
+      style={{ borderRadius: 20, background: "#fff", border: "1px solid #E5E7EB", padding: "1.75rem", cursor: "pointer", display: "flex", flexDirection: "column", height: "100%", transition: "box-shadow 0.3s, transform 0.3s" }}
+      onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.09)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+      onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
     >
-      {/* Order number + emoji */}
-      <div className="flex items-center justify-between mb-8">
-        <div className="text-sm font-inter font-bold tracking-widest text-gray-500 group-hover:text-da-orange transition-colors">
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", color: "#9CA3AF" }}>
           NO.{String(perf.order).padStart(2, "0")}
-        </div>
-        <div className="text-4xl filter grayscale group-hover:grayscale-0 transition-all duration-300">{perf.emoji}</div>
-      </div>
-
-      <h3 className="font-bold text-2xl mb-6 leading-snug font-syne text-gray-200 group-hover:text-white transition-colors">
-        {perf.name}
-      </h3>
-
-      <div className="mb-8">
-        <span className={`inline-block text-xs px-4 py-2 rounded-full font-inter uppercase tracking-wider border transition-colors duration-300 ${catStyle}`}>
-          {perf.category}
         </span>
+        <span style={{ fontSize: 28, filter: "grayscale(100%)", transition: "filter 0.3s" }}
+          onMouseEnter={e => e.target.style.filter = "none"}
+          onMouseLeave={e => e.target.style.filter = "grayscale(100%)"}
+        >{perf.emoji}</span>
       </div>
 
-      <div className="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
-        <div className="text-sm text-gray-500 font-inter group-hover:text-gray-300 transition-colors">
-          {perf.duration}
-        </div>
-        <div className="text-sm text-gray-500 font-inter group-hover:text-gray-300 transition-colors">
+      <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 17, fontWeight: 800, color: "#111827", lineHeight: 1.35, marginBottom: 14, flex: 1 }}>
+        {perf.name}
+      </div>
+
+      <span style={{ display: "inline-block", padding: "4px 12px", borderRadius: 999, fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", background: bg, color, marginBottom: 16 }}>
+        {perf.category}
+      </span>
+
+      <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 14, borderTop: "1px solid #F3F4F6" }}>
+        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "#9CA3AF", fontWeight: 500 }}>{perf.duration}</span>
+        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "#9CA3AF", fontWeight: 500 }}>
           {perf.participants === -1 ? "Semua Siswa" : `${perf.participants} Org`}
-        </div>
+        </span>
       </div>
     </motion.div>
   );
@@ -57,67 +62,44 @@ function PerformanceCard({ perf, onClick, index }) {
 
 function Modal({ perf, onClose }) {
   if (!perf) return null;
-  
+  const color = catColor[perf.category] || "#FF6B00";
+  const bg = catBg[perf.category] || "#FFF0E6";
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 bg-[#030303]/90 backdrop-blur-xl"
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
         onClick={onClose}
-      >
-        <motion.div
-          initial={{ scale: 0.95, opacity: 0, y: 10 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.95, opacity: 0 }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="max-w-2xl w-full rounded-[2.5rem] p-8 md:p-14 relative bg-[#0a0a0a] border border-white/10 shadow-2xl overflow-hidden"
+        style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5rem", background: "rgba(17,24,39,0.45)", backdropFilter: "blur(8px)" }}>
+        <motion.div initial={{ scale: 0.95, opacity: 0, y: 12 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0 }}
+          transition={{ type: "spring", damping: 26, stiffness: 280 }}
           onClick={e => e.stopPropagation()}
-        >
-          <button
-            onClick={onClose}
-            className="absolute top-8 right-8 w-12 h-12 rounded-full flex items-center justify-center text-2xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors z-10"
-          >
-            ×
-          </button>
+          style={{ maxWidth: 640, width: "100%", borderRadius: 24, background: "#fff", border: "1px solid #E5E7EB", padding: "2.5rem", position: "relative", boxShadow: "0 24px 64px rgba(0,0,0,0.15)", maxHeight: "90vh", overflowY: "auto" }}>
 
-          <div className="flex items-center gap-8 mb-10">
-            <div className="w-20 h-20 rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center text-4xl">
-              {perf.emoji}
-            </div>
+          <button onClick={onClose} style={{ position: "absolute", top: 20, right: 20, width: 40, height: 40, borderRadius: "50%", border: "none", background: "#F3F4F6", cursor: "pointer", fontSize: 20, color: "#6B7280", display: "flex", alignItems: "center", justifyContent: "center" }}>×</button>
+
+          <div style={{ display: "flex", gap: 16, alignItems: "center", marginBottom: 24 }}>
+            <div style={{ width: 64, height: 64, borderRadius: 16, background: bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 32, flexShrink: 0 }}>{perf.emoji}</div>
             <div>
-              <div className="text-xs uppercase tracking-[0.2em] mb-2 text-da-orange font-inter font-bold">
-                Penampilan {String(perf.order).padStart(2, "0")}
-              </div>
-              <h3 className="text-3xl md:text-4xl font-bold font-syne text-white leading-tight">{perf.name}</h3>
+              <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color, marginBottom: 6 }}>Penampilan {String(perf.order).padStart(2,"0")}</div>
+              <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(20px,3vw,28px)", fontWeight: 800, color: "#111827", lineHeight: 1.2 }}>{perf.name}</h3>
             </div>
           </div>
 
-          <p className="text-base md:text-lg mb-12 leading-relaxed text-gray-400 font-inter">
-            {perf.description}
-          </p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "#6B7280", lineHeight: 1.8, marginBottom: 24 }}>{perf.description}</p>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12">
-            {[
-              { label: "Kategori", value: perf.category },
-              { label: "Durasi", value: perf.duration },
-              { label: "Peserta", value: perf.participants === -1 ? "Seluruh Kelas 5" : `${perf.participants} Orang` },
-            ].map(item => (
-               <div key={item.label} className="p-6 rounded-3xl bg-white/[0.02] border border-white/5">
-                 <div className="text-xs uppercase tracking-widest mb-2 text-gray-500 font-inter">{item.label}</div>
-                 <div className="text-base font-medium font-inter text-gray-200">{item.value}</div>
-               </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 24 }}>
+            {[["Kategori", perf.category], ["Durasi", perf.duration], ["Peserta", perf.participants === -1 ? "Seluruh Kelas 5" : `${perf.participants} Orang`]].map(([l, v]) => (
+              <div key={l} style={{ padding: "1rem", borderRadius: 14, background: "#F9FAFB", border: "1px solid #F3F4F6" }}>
+                <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 6 }}>{l}</div>
+                <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 700, color: "#111827" }}>{v}</div>
+              </div>
             ))}
           </div>
 
           <div>
-            <div className="text-xs tracking-[0.2em] uppercase mb-4 text-gray-500 font-inter font-bold">Pembimbing</div>
-            <div className="flex flex-wrap gap-4">
+            <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 12 }}>Pembimbing</div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {perf.supervisors.map((s, i) => (
-                <div key={i} className="px-5 py-3 rounded-full text-sm text-gray-300 font-inter bg-white/5 border border-white/5">
-                  {s}
-                </div>
+                <span key={i} style={{ padding: "6px 16px", borderRadius: 999, background: "#F9FAFB", border: "1px solid #E5E7EB", fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 600, color: "#374151" }}>{s}</span>
               ))}
             </div>
           </div>
@@ -127,80 +109,59 @@ function Modal({ perf, onClose }) {
   );
 }
 
+const FILTERS = ["Semua", "Seni Musik & Suara", "Seni Tari & Atraksi", "Seni Theater", "Seni Bahasa & Literasi"];
+
 export default function Performances() {
   const [filter, setFilter] = useState("Semua");
   const [selected, setSelected] = useState(null);
 
-  const filters = ["Semua", "Seni Musik & Suara", "Seni Tari & Atraksi", "Seni Theater", "Seni Bahasa & Literasi"];
-
-  const filtered = filter === "Semua"
-    ? performances
+  const filtered = filter === "Semua" ? performances
     : performances.filter(p => p.category === filter || (filter === "Seni Musik & Suara" && p.category === "Seni Musik"));
 
   return (
-    <section id="performances" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-[#030303] relative border-t border-white/5">
-      <div className="max-w-7xl mx-auto">
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24"
-        >
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-10 h-px bg-da-orange" />
-              <span className="text-sm md:text-base tracking-[0.3em] uppercase text-da-orange font-inter font-bold">Bab 04</span>
+    <section id="performances" style={{ padding: "6rem 1.5rem", background: "#fff", borderTop: "1px solid #F3F4F6" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+
+        {/* Header */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 24, marginBottom: "4rem" }}>
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+              <div style={{ width: 36, height: 1, background: "#FF6B00" }} />
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#FF6B00" }}>Bab 04</span>
             </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold font-bebas tracking-wider text-white leading-tight">
-              DAFTAR <span className="text-gray-600">PENAMPILAN</span>
+            <h2 style={{ fontFamily: "'Bebas Neue', cursive", letterSpacing: "0.05em", color: "#111827", lineHeight: 0.9, fontSize: "clamp(44px, 7vw, 88px)" }}>
+              DAFTAR <span style={{ color: "#9CA3AF" }}>PENAMPILAN</span>
             </h2>
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
-        >
-          {[
-            { label: "Total Penampilan", value: "28" },
-            { label: "Kategori Seni", value: "4" },
-            { label: "Peserta Terbanyak", value: "43" },
-          ].map(s => (
-            <div key={s.label} className="p-8 md:p-12 rounded-[2.5rem] bg-white/[0.02] border border-white/[0.05] flex flex-col justify-center">
-              <div className="text-6xl md:text-7xl font-bold font-bebas text-da-orange mb-4">{s.value}</div>
-              <div className="text-sm uppercase tracking-widest text-gray-500 font-inter">{s.label}</div>
+        {/* Stats */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 16, marginBottom: "3rem" }}>
+          {[["28", "Total Penampilan"], ["4", "Kategori Seni"], ["43", "Peserta Terbanyak"]].map(([val, lbl]) => (
+            <div key={lbl} style={{ padding: "2rem", borderRadius: 20, background: "#F9FAFB", border: "1px solid #E5E7EB" }}>
+              <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 64, color: "#FF6B00", lineHeight: 1, marginBottom: 8 }}>{val}</div>
+              <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#9CA3AF" }}>{lbl}</div>
             </div>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap gap-4 mb-12"
-        >
-          {filters.map(f => (
-            <button
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`px-8 py-4 rounded-full text-sm font-bold tracking-widest transition-all duration-300 font-inter uppercase ${
-                filter === f 
-                  ? "bg-white text-black" 
-                  : "bg-white/5 text-gray-400 border border-white/5 hover:bg-white/10 hover:text-white"
-              }`}
-            >
+        {/* Filters */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: "2.5rem" }}>
+          {FILTERS.map(f => (
+            <button key={f} onClick={() => setFilter(f)} style={{
+              padding: "0.6rem 1.5rem", borderRadius: 999, border: "1.5px solid",
+              fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer", transition: "all 0.2s",
+              background: filter === f ? "#111827" : "#fff", color: filter === f ? "#fff" : "#6B7280", borderColor: filter === f ? "#111827" : "#E5E7EB",
+            }}>
               {f}
             </button>
           ))}
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-          {filtered.map((perf, i) => (
-            <PerformanceCard key={perf.id} perf={perf} onClick={setSelected} index={i} />
-          ))}
+        {/* Cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 16 }}>
+          {filtered.map((perf, i) => <Card key={perf.id} perf={perf} onClick={setSelected} index={i} />)}
         </div>
       </div>
 

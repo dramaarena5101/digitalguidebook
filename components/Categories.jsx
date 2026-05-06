@@ -1,84 +1,81 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { categories } from "../content";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
+const S = {
+  section: { padding: "6rem 1.5rem", background: "#F9FAFB", borderTop: "1px solid #F3F4F6" },
+  inner: { maxWidth: 1280, margin: "0 auto" },
+  heading: { fontFamily: "'Bebas Neue', cursive", letterSpacing: "0.05em", color: "#111827", lineHeight: 0.9, fontSize: "clamp(44px, 7vw, 88px)" },
 };
 
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } },
-};
+function Fade({ children, delay = 0, style = {} }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  return (
+    <motion.div ref={ref} initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay, ease: "easeOut" }} style={style}>
+      {children}
+    </motion.div>
+  );
+}
 
 export default function Categories() {
   return (
-    <section id="categories" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-[#030303] relative border-t border-white/5">
-      <div className="max-w-7xl mx-auto relative z-10">
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24"
-        >
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-10 h-px bg-da-orange" />
-              <span className="text-sm md:text-base tracking-[0.3em] uppercase text-da-orange font-inter font-bold">Bab 03</span>
+    <section id="categories" style={S.section}>
+      <div style={S.inner}>
+
+        {/* Header */}
+        <Fade style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 24, marginBottom: "4rem" }}>
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+              <div style={{ width: 36, height: 1, background: "#FF6B00" }} />
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#FF6B00" }}>Bab 03</span>
             </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold font-bebas tracking-wider text-white leading-tight">
-              KATEGORI <span className="text-gray-600">SENI</span>
-            </h2>
+            <h2 style={S.heading}>KATEGORI <span style={{ color: "#9CA3AF" }}>SENI</span></h2>
           </div>
-          <p className="text-base md:text-lg text-gray-400 font-inter md:max-w-md leading-relaxed text-left md:text-right">
-            Eksplorasi beragam medium ekspresi kreativitas yang akan ditampilkan dalam panggung Drama Arena 5101.
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "#6B7280", maxWidth: 380, lineHeight: 1.8 }}>
+            Eksplorasi beragam medium ekspresi kreativitas dalam panggung Drama Arena 5101.
           </p>
-        </motion.div>
+        </Fade>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
-        >
-          {categories.map((cat) => (
-            <motion.div
-              key={cat.name}
-              variants={itemVariants}
-              className="group rounded-[2.5rem] bg-white/[0.02] border border-white/[0.05] p-8 md:p-12 transition-all duration-300 hover:bg-white/[0.04] hover:border-white/10 flex flex-col h-full"
-            >
-              <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center text-4xl mb-10 text-gray-400 group-hover:text-da-orange transition-colors">
-                {cat.icon}
-              </div>
-              
-              <h3 className="text-2xl font-bold mb-6 font-syne text-gray-200 group-hover:text-white transition-colors">
-                {cat.name}
-              </h3>
-              
-              <ul className="space-y-4 mb-10">
-                {cat.items.slice(0, 3).map((item) => (
-                  <li key={item} className="text-base text-gray-400 font-inter flex items-center gap-3 group/item hover:text-gray-200 transition-colors">
-                    <span className="text-xs text-da-orange opacity-0 group-hover:opacity-100 transition-opacity">✦</span>
-                    <span className="-ml-5 group-hover:ml-0 transition-all duration-300">{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {cat.items.length > 3 && (
-                <div className="mt-auto pt-6 border-t border-white/5">
-                  <span className="text-xs text-gray-600 font-inter tracking-widest uppercase">
-                    + {cat.items.length - 3} Lainnya
-                  </span>
+        {/* Grid */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20 }}>
+          {categories.map((cat, i) => (
+            <Fade key={cat.name} delay={i * 0.08}>
+              <div
+                style={{ borderRadius: 20, background: "#fff", border: "1px solid #E5E7EB", padding: "2rem", height: "100%", display: "flex", flexDirection: "column", transition: "box-shadow 0.3s, transform 0.3s", cursor: "default" }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.09)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                {/* Icon */}
+                <div style={{ width: 52, height: 52, borderRadius: 14, background: "#F9FAFB", border: "1px solid #E5E7EB", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, marginBottom: 20 }}>
+                  {cat.icon}
                 </div>
-              )}
-            </motion.div>
+
+                {/* Name */}
+                <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 20, fontWeight: 800, color: "#111827", marginBottom: 16, lineHeight: 1.25 }}>
+                  {cat.name}
+                </div>
+
+                {/* Items */}
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10, marginBottom: 16, flex: 1 }}>
+                  {cat.items.slice(0, 3).map(item => (
+                    <li key={item} style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: "'Inter', sans-serif", fontSize: 13, color: "#6B7280", fontWeight: 500 }}>
+                      <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#FF6B00", flexShrink: 0, opacity: 0.7 }} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                {cat.items.length > 3 && (
+                  <div style={{ paddingTop: 14, borderTop: "1px solid #F3F4F6", fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                    + {cat.items.length - 3} Lainnya
+                  </div>
+                )}
+              </div>
+            </Fade>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

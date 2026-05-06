@@ -7,108 +7,131 @@ const navItems = [
   { label: "Categories", href: "#categories" },
   { label: "Performances", href: "#performances" },
   { label: "Timeline", href: "#timeline" },
+  { label: "Judges", href: "#judges" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenu, setMobileMenu] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        scrolled 
-          ? "py-3 bg-[#020202]/80 backdrop-blur-2xl border-b border-white/5" 
-          : "py-6 bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 flex items-center justify-center bg-white/[0.03] border border-white/10 text-white font-bold rounded-xl font-bebas text-lg group-hover:bg-white/[0.05] transition-colors">
-            DA
-          </div>
-          <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-wide leading-none font-bebas text-white">DRAMA ARENA</span>
-            <span className="text-[9px] text-gray-500 font-bold tracking-[0.2em] uppercase font-inter mt-1">5101 EDITION</span>
-          </div>
-        </a>
+  // Lock body scroll when menu open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
-        {/* Desktop links */}
-        <div className="hidden lg:flex items-center gap-2">
-          <div className="flex items-center bg-white/[0.02] border border-white/5 px-2 py-1.5 rounded-full mr-4">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="px-5 py-2 text-[10px] font-bold uppercase tracking-[0.15em] text-gray-400 hover:text-white transition-colors rounded-full hover:bg-white/[0.05] font-inter"
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
+  return (
+    <>
+      <style>{`
+        .nav-desktop { display: none; }
+        .nav-hamburger { display: flex; }
+        @media (min-width: 1024px) {
+          .nav-desktop { display: flex; }
+          .nav-hamburger { display: none; }
+        }
+        .nav-link {
+          padding: 0.5rem 1.1rem;
+          border-radius: 999px;
+          font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          color: #6B7280;
+          text-decoration: none;
+          transition: all 0.2s;
+          white-space: nowrap;
+        }
+        .nav-link:hover { background: #fff; color: #111827; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+      `}</style>
+
+      <motion.nav
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        style={{
+          position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
+          transition: "all 0.4s ease",
+          background: scrolled ? "rgba(255,255,255,0.93)" : "transparent",
+          backdropFilter: scrolled ? "blur(20px)" : "none",
+          borderBottom: scrolled ? "1px solid #E5E7EB" : "none",
+          boxShadow: scrolled ? "0 1px 16px rgba(0,0,0,0.06)" : "none",
+          padding: scrolled ? "0.75rem 0" : "1.25rem 0",
+        }}
+      >
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           
-          <a
-            href="#performances"
-            className="px-7 py-3 bg-white text-black text-[10px] font-bold uppercase tracking-[0.15em] rounded-full hover:scale-105 transition-transform font-inter"
-          >
-            Digital Guide
+          {/* Brand */}
+          <a href="#home" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", flexShrink: 0 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, border: "1.5px solid #FDDCBF", background: "#FFF0E6", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", flexShrink: 0 }}>
+              <img src="/logo.png" alt="DA" style={{ width: "100%", height: "100%", objectFit: "cover" }} onError={e => { e.target.style.display = "none"; e.target.parentElement.innerHTML = `<span style="font-family:'Bebas Neue',cursive;font-size:16px;color:#FF6B00">DA</span>`; }} />
+            </div>
+            <div style={{ flexShrink: 0 }}>
+              <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 18, letterSpacing: "0.05em", color: "#111827", lineHeight: 1 }}>DRAMA ARENA</div>
+              <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 8, fontWeight: 700, letterSpacing: "0.2em", color: "#FF6B00", textTransform: "uppercase" }}>5101 EDITION</div>
+            </div>
           </a>
+
+          {/* Desktop Nav */}
+          <div className="nav-desktop" style={{ alignItems: "center", gap: 8 }}>
+            <div style={{ display: "flex", alignItems: "center", background: "#F9FAFB", border: "1px solid #E5E7EB", borderRadius: 999, padding: "0.3rem", marginRight: "0.75rem" }}>
+              {navItems.map(item => (
+                <a key={item.label} href={item.href} className="nav-link">{item.label}</a>
+              ))}
+            </div>
+            <a href="#performances" style={{ padding: "0.65rem 1.5rem", borderRadius: 999, background: "#FF6B00", color: "#fff", fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", boxShadow: "0 4px 14px rgba(255,107,0,0.3)", whiteSpace: "nowrap", transition: "all 0.2s" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "#111827"; e.currentTarget.style.boxShadow = "0 4px 14px rgba(0,0,0,0.2)"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "#FF6B00"; e.currentTarget.style.boxShadow = "0 4px 14px rgba(255,107,0,0.3)"; }}>
+              Digital Guide →
+            </a>
+          </div>
+
+          {/* Mobile Hamburger */}
+          <button className="nav-hamburger"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            style={{ width: 40, height: 40, borderRadius: 10, border: "1.5px solid #E5E7EB", background: "#fff", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 5, cursor: "pointer", flexShrink: 0 }}
+          >
+            <span style={{ width: 18, height: 2, background: "#111827", borderRadius: 2, display: "block", transition: "all 0.3s", transform: mobileOpen ? "rotate(45deg) translateY(7px)" : "none" }} />
+            <span style={{ width: 18, height: 2, background: "#111827", borderRadius: 2, display: "block", transition: "all 0.3s", opacity: mobileOpen ? 0 : 1 }} />
+            <span style={{ width: 18, height: 2, background: "#111827", borderRadius: 2, display: "block", transition: "all 0.3s", transform: mobileOpen ? "rotate(-45deg) translateY(-7px)" : "none" }} />
+          </button>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setMobileMenu(!mobileMenu)}
-          className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 bg-white/[0.03] border border-white/10 rounded-xl"
-        >
-          <div className={`w-4 h-0.5 bg-white transition-all ${mobileMenu ? "rotate-45 translate-y-2" : ""}`} />
-          <div className={`w-4 h-0.5 bg-white transition-all ${mobileMenu ? "opacity-0" : ""}`} />
-          <div className={`w-4 h-0.5 bg-white transition-all ${mobileMenu ? "-rotate-45 -translate-y-2" : ""}`} />
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenu && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "100vh" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-[#030303] overflow-hidden absolute top-full left-0 w-full"
-          >
-            <div className="flex flex-col px-6 py-12 gap-8 min-h-[calc(100vh-80px)]">
-              <div className="flex flex-col gap-6">
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setMobileMenu(false)}
-                    className="text-4xl font-bebas tracking-wide text-gray-400 hover:text-white"
-                  >
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{ background: "#fff", borderTop: "1px solid #F3F4F6", overflow: "hidden" }}
+            >
+              <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: 4 }}>
+                {navItems.map(item => (
+                  <a key={item.label} href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    style={{ padding: "0.875rem 1rem", borderRadius: 12, fontFamily: "'Bebas Neue', cursive", fontSize: 26, letterSpacing: "0.08em", color: "#374151", textDecoration: "none", transition: "all 0.2s", borderBottom: "1px solid #F9FAFB" }}
+                    onMouseEnter={e => { e.currentTarget.style.color = "#FF6B00"; e.currentTarget.style.paddingLeft = "1.5rem"; }}
+                    onMouseLeave={e => { e.currentTarget.style.color = "#374151"; e.currentTarget.style.paddingLeft = "1rem"; }}>
                     {item.label}
                   </a>
                 ))}
-              </div>
-              <div className="mt-auto pb-10">
-                <a
-                  href="#performances"
-                  onClick={() => setMobileMenu(false)}
-                  className="block w-full py-5 text-center bg-white text-black text-xs font-bold uppercase tracking-[0.2em] rounded-2xl font-inter"
-                >
-                  Open Digital Guide
+                <a href="#performances" onClick={() => setMobileOpen(false)}
+                  style={{ marginTop: "0.75rem", padding: "1rem", borderRadius: 14, background: "#FF6B00", color: "#fff", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: "0.1em", textTransform: "uppercase", textAlign: "center", textDecoration: "none", boxShadow: "0 4px 16px rgba(255,107,0,0.3)" }}>
+                  Buka Digital Guide
                 </a>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
+    </>
   );
 }

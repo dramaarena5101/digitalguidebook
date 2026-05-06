@@ -4,43 +4,56 @@ import { timeline } from "../content";
 
 function TimelineItem({ item, index }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const isRight = index % 2 === 0;
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const isLeft = index % 2 === 0;
   const isSpecial = item.event.includes("Time to Shine");
 
   return (
-    <motion.div
-      ref={ref}
+    <motion.div ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
-      className="relative flex items-center justify-center group"
+      transition={{ duration: 0.7, delay: index * 0.08 }}
+      style={{ display: "flex", alignItems: "center", position: "relative", gap: 0 }}
     >
-      <div className={`w-5/12 ${isRight ? "text-right pr-6 md:pr-16" : "text-left pl-6 md:pl-16 ml-auto"}`}>
-        <div
-          className={`p-8 md:p-12 rounded-[2.5rem] inline-block w-full transition-all duration-300 relative ${
-            isSpecial 
-              ? "bg-da-orange/[0.05] border-da-orange/30 hover:bg-da-orange/[0.08]" 
-              : "bg-white/[0.02] border-white/[0.05] hover:bg-white/[0.04]"
-          } border`}
-        >
-          <div className={`text-sm uppercase tracking-widest mb-4 font-inter font-bold ${isSpecial ? "text-da-orange" : "text-gray-500"}`}>
-            {item.date}
+      {/* Left card */}
+      <div style={{ flex: 1, display: "flex", justifyContent: "flex-end", paddingRight: 40 }}>
+        {isLeft && (
+          <div style={{
+            padding: "1.5rem 2rem", borderRadius: 18, border: "1.5px solid",
+            borderColor: isSpecial ? "#FDDCBF" : "#E5E7EB",
+            background: isSpecial ? "#FFF0E6" : "#fff",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.05)", maxWidth: 340, width: "100%",
+            transition: "box-shadow 0.3s"
+          }}>
+            <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: isSpecial ? "#FF6B00" : "#9CA3AF", marginBottom: 8 }}>{item.date}</div>
+            <div style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(16px,2vw,22px)", fontWeight: 800, color: isSpecial ? "#FF6B00" : "#111827", lineHeight: 1.3 }}>{item.event}</div>
           </div>
-          <div className={`text-2xl md:text-3xl lg:text-4xl font-bold font-syne leading-snug ${isSpecial ? "text-da-orange" : "text-gray-200"}`}>
-            {item.event}
-          </div>
-        </div>
+        )}
       </div>
 
-      <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
-        <div
-          className={`w-6 h-6 rounded-full border-[3px] transition-all duration-500 ${
-            isSpecial 
-              ? "bg-[#030303] border-da-orange shadow-[0_0_20px_rgba(255,107,0,0.6)] scale-125" 
-              : "bg-[#030303] border-white/20 group-hover:border-da-orange group-hover:scale-110"
-          }`}
-        />
+      {/* Center dot */}
+      <div style={{ position: "relative", zIndex: 10, flexShrink: 0 }}>
+        <div style={{
+          width: 18, height: 18, borderRadius: "50%", border: "2.5px solid",
+          borderColor: isSpecial ? "#FF6B00" : "#D1D5DB",
+          background: isSpecial ? "#FF6B00" : "#fff",
+          boxShadow: isSpecial ? "0 0 16px rgba(255,107,0,0.4)" : "none"
+        }} />
+      </div>
+
+      {/* Right card */}
+      <div style={{ flex: 1, paddingLeft: 40 }}>
+        {!isLeft && (
+          <div style={{
+            padding: "1.5rem 2rem", borderRadius: 18, border: "1.5px solid",
+            borderColor: isSpecial ? "#FDDCBF" : "#E5E7EB",
+            background: isSpecial ? "#FFF0E6" : "#fff",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.05)", maxWidth: 340, width: "100%"
+          }}>
+            <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: isSpecial ? "#FF6B00" : "#9CA3AF", marginBottom: 8 }}>{item.date}</div>
+            <div style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(16px,2vw,22px)", fontWeight: 800, color: isSpecial ? "#FF6B00" : "#111827", lineHeight: 1.3 }}>{item.event}</div>
+          </div>
+        )}
       </div>
     </motion.div>
   );
@@ -48,41 +61,35 @@ function TimelineItem({ item, index }) {
 
 export default function Timeline() {
   return (
-    <section id="timeline" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-[#030303] relative border-t border-white/5">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col items-center text-center mb-20 md:mb-32"
-        >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-10 h-px bg-da-orange" />
-            <span className="text-sm md:text-base tracking-[0.3em] uppercase text-da-orange font-inter font-bold">Bab 05</span>
-            <div className="w-10 h-px bg-da-orange" />
+    <section id="timeline" style={{ padding: "6rem 1.5rem", background: "#F9FAFB", borderTop: "1px solid #F3F4F6" }}>
+      <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+
+        {/* Header */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          style={{ textAlign: "center", marginBottom: "5rem" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 16 }}>
+            <div style={{ width: 36, height: 1, background: "#FF6B00" }} />
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#FF6B00" }}>Bab 05</span>
+            <div style={{ width: 36, height: 1, background: "#FF6B00" }} />
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold font-bebas tracking-wider text-white">
-            KEJADIAN <span className="text-gray-600">PENTING</span>
+          <h2 style={{ fontFamily: "'Bebas Neue', cursive", letterSpacing: "0.05em", color: "#111827", lineHeight: 0.9, fontSize: "clamp(44px, 7vw, 88px)" }}>
+            KEJADIAN <span style={{ color: "#9CA3AF" }}>PENTING</span>
           </h2>
         </motion.div>
 
-        <div className="relative py-12">
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-
-          <div className="flex flex-col gap-16 md:gap-20">
-            {timeline.map((item, i) => (
-              <TimelineItem key={i} item={item} index={i} />
-            ))}
+        {/* Timeline */}
+        <div style={{ position: "relative" }}>
+          {/* Vertical line */}
+          <div style={{ position: "absolute", left: "50%", top: 0, bottom: 0, width: 1, background: "linear-gradient(to bottom, transparent, #E5E7EB 10%, #E5E7EB 90%, transparent)", transform: "translateX(-50%)" }} />
+          <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+            {timeline.map((item, i) => <TimelineItem key={i} item={item} index={i} />)}
           </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="flex justify-center mt-24"
-        >
-          <div className="px-12 py-5 rounded-full text-base md:text-lg font-bold bg-white text-black font-bebas tracking-[0.2em] shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+        {/* Footer badge */}
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
+          style={{ display: "flex", justifyContent: "center", marginTop: "5rem" }}>
+          <div style={{ padding: "1rem 3rem", borderRadius: 999, background: "#111827", color: "#fff", fontFamily: "'Bebas Neue', cursive", fontSize: 20, letterSpacing: "0.2em", boxShadow: "0 8px 24px rgba(17,24,39,0.2)" }}>
             ✦ DRAMA ARENA 5101 ✦
           </div>
         </motion.div>

@@ -1,4 +1,6 @@
+import { useState } from "react";
 import "./index.css";
+import LoadingScreen from "./components/LoadingScreen";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -10,19 +12,26 @@ import Judges from "./components/Judges";
 import { Ticker, Footer } from "./components/Footer";
 
 export default function App() {
+  const [loaded, setLoaded] = useState(false);
+
   return (
-    <div className="bg-da-black min-h-screen text-da-text font-syne">
-      <Navbar />
-      <Hero />
-      <Ticker />
-      <About />
-      <Categories />
-      <Performances />
-      <Ticker />
-      <RundownSequence />
-      <Timeline />
-      <Judges />
-      <Footer />
+    <div style={{ minHeight: "100vh", background: "#fff" }}>
+      <LoadingScreen onDone={() => setLoaded(true)} />
+      {loaded && (
+        <>
+          <Navbar />
+          <Hero />
+          <Ticker />
+          <About />
+          <Categories />
+          <Performances />
+          <Ticker />
+          <RundownSequence />
+          <Timeline />
+          <Judges />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
