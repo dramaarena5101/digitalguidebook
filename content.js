@@ -51,7 +51,8 @@ export const timeline = [
   { date: "02 April 2026", event: "Awal Latihan DA" },
   { date: "14 April 2026", event: "Geladi 1 Drama Arena" },
   { date: "20 April 2026", event: "Geladi 2 Drama Arena" },
-  { date: "05 Mei 2026", event: "Geladi 3 Drama Arena" },
+  { date: "01 Mei 2026", event: "Geladi 3 Drama Arena" },
+  { date: "05 Mei 2026", event: "Geladi Suci Drama Arena" },
   { date: "07 Mei 2026", event: "It's Time to Shine for Drama Arena 5101! ✦" },
 ];
 
