@@ -2,9 +2,9 @@ export const eventInfo = {
   name: "Drama Arena 5101",
   subtitle: "Five a Hundred One",
   motto: "Nyalakan Api Kebersamaan, Wujudkan Idealisme Kehidupan",
-  date: "Selasa, 18 Dzulqa'dah 1447H / 05 Mei 2026M",
+  date: "Kamis, 20 Dzulqa'dah 1447H / 07 Mei 2026M",
   time: "Pukul 19.15 s.d. selesai",
-  venue: "Depan Gedung Laboratorium KMI",
+  venue: "Depan Balai Pertemuan Pondok Modern Darussalam Gontor",
   period: "1447-1448 / 2026-2027",
   organizer: "Siswa Kelas 5 KMI Pondok Modern Darussalam Gontor",
   picInCharge: "Al-Ustadz Ahmad Nur Fajar Dwi Prakosa",
@@ -58,43 +58,48 @@ export const timeline = [
   { date: "02 April 2026", event: "Awal Latihan DA" },
   { date: "14 April 2026", event: "Geladi 1 Drama Arena" },
   { date: "20 April 2026", event: "Geladi 2 Drama Arena" },
-  { date: "01 Mei 2026", event: "Geladi 3 Drama Arena" },
-  { date: "05 Mei 2026", event: "Geladi Suci Drama Arena" },
+  { date: "05 Mei 2026", event: "Geladi 3 Drama Arena" },
   { date: "07 Mei 2026", event: "It's Time to Shine for Drama Arena 5101! ✦" },
 ];
 
-export const judges = [
-  {
-    no: "01",
-    category: "Konsep Umum",
-    members: ["Al-Ustadz Afique Rahmadiansyah, S.EI., M.Med.Kom.", "Al-Ustadz H. Husni Dzahaby, Lc."],
-  },
-  {
-    no: "02",
-    category: "Kategori Seni Musik & Suara",
-    members: ["Al-Ustadz Hasan Muttaqin, S.Th.I., M.Pd.", "Al-Ustadz Rafi Kalima Gunaryanto"],
-  },
-  {
-    no: "03",
-    category: "Kategori Seni Tari & Atraksi",
-    members: ["Al-Ustadz Mohammad Naufal Ash-shodiqi", "Al-Ustadz Muhammad Fakhri As Syujai"],
-  },
-  {
-    no: "04",
-    category: "Kategori Seni Theater",
-    members: ["Al-Ustadz Dr. Hasib Amrullah, S.Ag., M.Ud.", "Al-Ustadz Winka Ghozi Nafi', S.H."],
-  },
-  {
-    no: "05",
-    category: "Kategori Seni Bahasa",
-    members: ["Al-Ustadz Muhammad Fauzan", "Al-Ustadz Fariz Istiqlal Harahap, S.I.Kom."],
-  },
-];
+export const judges = {
+  pimpinan: [
+    "K.H. Hasan Abdullah Sahal",
+    "Drs. K.H. M. Akrim Mariyat, Dipl.A.Ed."
+  ],
+  lembaga: [
+    "H. Noor Syahid, M.Pd.",
+    "H. Ismail Abdullah Budi Prasetyo, S.Ag.",
+    "K.H. Masyhudi Subari, M.A.",
+    "Prof. Dr. K.H. Hamid Fahmi Zarkasyi, M.A.Ed., M.Phil.",
+    "Assoc. Prof. Dr. H. Mulyono Jamal, M.A.",
+    "Assoc. Prof. Dr. H. Ahmad Hidayatullah Zarkasyi, M.A."
+  ],
+  dewanJuri: [
+    "Dr. H. Ahmad Suharto M.Pd.I.",
+    "Drs. H. Rif'at Husnul Ma'afi, M.Ag.",
+    "Ahmad Saefullah, M.Pd.I., P.hd.",
+    "H. Nazeeh M Soebari, Lc.",
+    "H. Saepul Anwar, M.Pd.",
+    "Dr. Khasib Amrullah, S.Ag., M.Ud.",
+    "Drs. H. Sutrisno Ahmad, Dipl.A.",
+    "H. Muhammad Syuja'i, S.Ag.",
+    "Dr. M. Kurnia Rahman Abadi, MM.",
+    "H. Farid Sulistyo, Lc.",
+    "H. Nashruddin, Lc.",
+    "H. Anwar Boyaman",
+    "H. Husni Dzahaby, Lc.",
+    "Hakam Ar Rosyada, M.Pd.I.",
+    "Hasan Mutaqien, S.Th.I., M.Pd.",
+    "Hendri Setiyo Wibowo, S.Th.I., M.H."
+  ]
+};
 
 export const performances = [
   {
     id: 1,
     order: 1,
+    pdfPage: 1,
     name: "Senandung Sholawat",
     duration: "7 Menit",
     category: "Seni Musik & Suara",
@@ -103,10 +108,20 @@ export const performances = [
     description: "Sholawat indah nan syahdu diiringi dengan iringan musik hadroh yang akan membawakan sholawat-sholawat indah kepada hadirin sebagai tanda atas keberkahan dan nilai islami acara Drama Arena 5101.",
     emoji: "🎵",
     color: "#FF6B00",
+    lyrics: `مُحَمَّدٌ سَيِّدُ الكَوْنَيْنِ وَالثَّقَلَيْنِ
+وَالفَرِيقَيْنِ مِنْ عُرْبٍ وَمِنْ عَجَمِ
+هُوَ الحَبِيبُ الَّذِي تُرْجَى شَفَاعَتُهُ
+لِكُلِّ هَوْلٍ مِنَ الأَهْوَالِ مُقْتَحِمِ
+
+يَا رَبِّ بِالْمُصْطَفَى بَلِّغْ مَقَاصِدَنَا
+وَاغْفِرْ لَنَا مَا مَضَى يَا وَاسِعَ الكَرَمِ
+عَلَيْكَ يَا رَسُولَ اللهِ الصَّلَاةُ وَالسَّلَامُ
+وَالْأَنْبِيَاءُ وَالْمُرْسَلِينَ لَا غَيْرَ خَاتِمٍ أَوَّلًا`,
   },
   {
     id: 2,
     order: 2,
+    pdfPage: 2,
     name: 'Band 5101: "Lomba Sihir!"',
     duration: "4 Menit",
     category: "Seni Musik & Suara",
@@ -129,13 +144,12 @@ Ini soal keberanian untuk tetap berdiri
 Ayo kita lomba sihir!
 Siapa yang paling berani?
 Ayo kita buktikan
-Bahwa kita bisa bersinar!
-
-(Catatan: Lirik lengkap mengikuti aransemen Band 5101)`,
+Bahwa kita bisa bersinar!`,
   },
   {
     id: 3,
     order: 3,
+    pdfPage: 3,
     name: "Master of Ceremony",
     duration: "10 Menit",
     category: "Seni Bahasa & Literasi",
@@ -159,13 +173,12 @@ Ladies and gentlemen, honored guests, and beloved teachers —
 Welcome to Drama Arena 5101: Five A Hundred One!
 Tonight, we light the flame of togetherness.
 Tonight, we realize the idealism of life.
-Let the show begin!
-
-(Catatan: Teks lengkap mengikuti arahan pembimbing MC)`,
+Let the show begin!`,
   },
   {
     id: 4,
     order: 4,
+    pdfPage: 4,
     name: "Tilawah Ayat Suci Al-Qur'an",
     duration: "7 Menit",
     category: "Seni Musik & Suara",
@@ -188,6 +201,7 @@ Ayat: 133 – 136
   {
     id: 5,
     order: 5,
+    pdfPage: 5,
     name: "Sambutan Ketua Drama Arena",
     duration: "7 Menit",
     category: "Seni Bahasa & Literasi",
@@ -196,10 +210,20 @@ Ayat: 133 – 136
     description: "Sambutan dari ketua Drama Arena 5101",
     emoji: "🎙️",
     color: "#FF6B00",
+    mcScript: `اَلْحَمْدُ للهِ الَّذِي أَرْسَلَ رَسُولَهُ بِالْهُدَى وَدِينِ الْحَقِّ لِيُظْهِرَهُ عَلَى الدِّينِ كُلِّهِ وَكَفَى بِاللهِ شَهِيدًا.
+أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، إِقْرَارًا بِهِ وَتَوْحِيدًا.
+وَأَشْهَدُ أَنَّ نَبِيَّنَا مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ الْمَبْعُوثُ هَادِيًا وَمُرْشِدًا.
+أَمَّا بَعْدُ:
+أَيُّهَا الْحَفْلُ الْكَرِيمُ، السَّادَةُ الْمُدَرِّسُونَ، إِخْوَانِي الطَّلَبَةُ فِي دَارِ السَّلَامِ كُونْتُور.
+
+Bismillah. Yang terhormat Bapak Pimpinan Pondok Modern Darussalam Gontor,
+Yang kami hormati para Asatidz dan seluruh hadirin sekalian.
+Drama Arena ini bukan sekadar panggung hiburan, melainkan panggung pendidikan, panggung perjuangan, dan pembuktian jati diri kelas 5!`,
   },
   {
     id: 6,
     order: 6,
+    pdfPage: 6,
     name: "Grand Opening: OST DA 5101",
     duration: "7 Menit",
     category: "Seni Musik & Suara",
@@ -208,10 +232,21 @@ Ayat: 133 – 136
     description: "Grand Opening Drama Arena 5101 yang akan diiringi dengan OST Drama Arena 5101.",
     emoji: "🌟",
     color: "#e85d04",
+    lyrics: `Di malam ini kita bersatu
+Menyala dalam satu padu
+Drama Arena lima satu kosong satu
+Buktikan kita mampu maju!
+
+[Chorus]
+It's time to shine! It's time to rise!
+Kami datang membawa cahaya
+Bersama dalam satu asa
+Wujudkan idealisme kehidupan!`,
   },
   {
     id: 7,
     order: 7,
+    pdfPage: 7,
     name: "Drama POV 1 = Bintang",
     duration: "10 Menit",
     category: "Seni Theater",
@@ -220,10 +255,16 @@ Ayat: 133 – 136
     description: "Penampilan drama yang menceritakan kehidupan seorang ketua rayon yang menjadi midola para anggotanya, ia adalah Bintang.",
     emoji: "⭐",
     color: "#FF6B00",
+    mcScript: `(Suasana rayon yang riuh. Bintang masuk dengan wajah tegas namun hangat.)
+Bintang: "Siapa bilang jadi ketua itu mudah? Di sini, di GBSK, kita bukan sekadar mengatur barisan. Kita mendidik hati."
+Anggota 1: "Kak Bintang! Sandalku hilang lagi!"
+Bintang: (Tersenyum tipis) "Sandal hilang itu ujian keikhlasan. Ayo, kita cari bersama. Jangan sampai hilangnya sandal menghilangkan ukhuwah kita."
+(Lampu meredup, musik dramatis mengalun)`,
   },
   {
     id: 8,
     order: 8,
+    pdfPage: 8,
     name: "Choir 5101",
     duration: "10 Menit",
     category: "Seni Musik & Suara",
@@ -232,6 +273,23 @@ Ayat: 133 – 136
     description: "Paduan suara 5101 yang akan membawakan tiga lagu syahdu sekaligus dengan aransemen yang memukau.",
     emoji: "🎶",
     color: "#cc4400",
+    lyrics: `[Mars Darussalam]
+Pesantrenku, ibuku, Darussalam
+Tempat ku dibina, dididik, ditempa
+Menjadi mujahid yang tangguh dan mulia
+Berbakti pada Ilahi, nusa dan bangsa
+
+[Spontan (Uhuy)]
+Pagi hari lari-lari (uhuy!)
+Ke masjid jangan sampai telat mandi
+Hidup santri itu warna warni
+Banyak cerita yang takkan terganti!
+
+[Ini Abadi]
+Kenangan ini takkan pernah pudar
+Bersama kita merajut mimpi di sini
+Walau esok kita kan melangkah pergi
+Namun persaudaraan ini kan abadi...`,
     songs: [
       { title: "Mars Darussalam", desc: "Lagu kebanggaan dan identitas Pondok Modern Darussalam Gontor" },
       { title: "Spontan (Uhuy)", desc: "Lagu ceria penuh semangat tentang kehidupan di Darussalam" },
@@ -241,6 +299,7 @@ Ayat: 133 – 136
   {
     id: 9,
     order: 9,
+    pdfPage: 9,
     name: 'Nasyid 5101: "Syukur Alhamdulillah"',
     duration: "4 Menit",
     category: "Seni Musik & Suara",
@@ -263,13 +322,12 @@ Ada cahaya-Mu yang selalu menerangi
 Syukur Alhamdulillah, Alhamdulillah
 Atas semua yang Engkau berikan
 Syukur Alhamdulillah, Alhamdulillah
-Hati ini penuh dengan rasa terima kasih
-
-(Catatan: Lirik lengkap mengikuti aransemen Nasyid 5101)`,
+Hati ini penuh dengan rasa terima kasih`,
   },
   {
     id: 10,
     order: 10,
+    pdfPage: 10,
     name: "Drama POV 2 = Azka",
     duration: "10 Menit",
     category: "Seni Theater",
@@ -278,10 +336,14 @@ Hati ini penuh dengan rasa terima kasih
     description: "Drama berpindah fokus ke aggonta rayon GBSK. Bagaimanakah kelah kesuh mereka menjadi anggota rayon? Apakah mereka hidup dalam rayon yang 'Maskani Jannati'? Ataukah... sebaliknya?",
     emoji: "🎭",
     color: "#e85d04",
+    mcScript: `Azka: (Mengusap keringat setelah lari) "Maskani Jannati... asramaku surgaku. Surga apanya kalau air di kamar mandi mati?!"
+Teman Azka: "Sabar, Zka. Ini namanya tarbiyah. Air mati berarti kita harus belajar mengalirkan kesabaran."
+Azka: "Kesabaran nggak bisa buat mandi! Tapi... ya sudah lah, ini Gontor. Kalau nggak gini, nggak ada cerita buat masa depan."`,
   },
   {
     id: 11,
     order: 11,
+    pdfPage: 11,
     name: "Ya Maulay Ya Maulay",
     duration: "4 Menit",
     category: "Seni Tari & Atraksi",
@@ -290,10 +352,19 @@ Hati ini penuh dengan rasa terima kasih
     description: "Pertunjukkan suatu tari tradisional Melayu, khususnya populer di Riau, yang berakar dari kebudayaan Arab dan Melayu. Tari ini sarat nilai filosofis-religius dan sering dipentaskan sebagai media da'wah serta hiburan.",
     emoji: "🌙",
     color: "#FF6B00",
+    lyrics: `Ya maulay ya maulay
+Ya robbi irhamna ya maulay
+(Tarian diiringi tepakan rebana dan gerakan tangan yang gemulai nan rancak)
+Pantun:
+Tari zapin langkah bersusun
+Bawa rebana irama dialun
+Kami datang membawa santun
+Moga hadirin semuanya rukun.`,
   },
   {
     id: 12,
     order: 12,
+    pdfPage: 12,
     name: "Black Mask Rhythm",
     duration: "4 Menit",
     category: "Seni Tari & Atraksi",
@@ -302,10 +373,16 @@ Hati ini penuh dengan rasa terima kasih
     description: "Black Mask Rhtyhm (Topeng Ireng) adalah suatu tarian tradisional berasal dari desa Tuk Songo Borobudur dan berkembang pesat di Kab. Magelang, Jawa Tengah.",
     emoji: "🎭",
     color: "#cc4400",
+    lyrics: `(Iringan bende dan gamelan menghentak)
+"Hoo a... hoo e..."
+(Penari menghentakkan kaki, memamerkan kostum meriah dengan hiasan kepala bulu-bulu)
+"Sura dira jayaning rat, lebur dening pangastuti!"
+(Kejahatan sebesar apapun akan lebur oleh kebaikan)`,
   },
   {
     id: 13,
     order: 13,
+    pdfPage: 13,
     name: "Udal Adul Well",
     duration: "4 Menit",
     category: "Seni Tari & Atraksi",
@@ -314,10 +391,15 @@ Hati ini penuh dengan rasa terima kasih
     description: "Pertunjukkan kesenian tradisional khas Jawa Barat, khususnya dari Kab. Subang, yang menampilkan boneka singa yang diusung oleh 4 orang penari sekaligus.",
     emoji: "🦁",
     color: "#FF6B00",
+    lyrics: `(Iringan kendang rampak dan tarompet Sunda)
+"Euy! Euy! Maju terus pantang mundur!"
+"Singa depa jadi macan, urang sunda wani tarung!"
+(Para penari mengusung sisingaan sambil melakukan gerakan akrobatik dan pencak silat)`,
   },
   {
     id: 14,
     order: 14,
+    pdfPage: 14,
     name: "SKA N DUT",
     duration: "4 Menit",
     category: "Seni Tari & Atraksi",
@@ -326,10 +408,16 @@ Hati ini penuh dengan rasa terima kasih
     description: "Pementasan tari asyik khas Jawa yang memadukan alat musik tradisional dengan instrumen modern seperti keyboard, gitar, dan ukulele.",
     emoji: "🎵",
     color: "#e85d04",
+    lyrics: `(Gitar ska berpadu dengan kendang dangdut)
+"O A O E!"
+"Cendol dawet, lima ratusan, nggak pakai ketan!"
+"Tarik sis, semongko!"
+(Penari melakukan gerakan asyik dan kompak dengan ritme ska dan dangdut)`,
   },
   {
     id: 15,
     order: 15,
+    pdfPage: 15,
     name: "Drama POV 3 = Mudabbir",
     duration: "10 Menit",
     category: "Seni Theater",
@@ -338,10 +426,15 @@ Hati ini penuh dengan rasa terima kasih
     description: "Kali ini kehidupan rayon dibuat tegang, dengan peralihan fokus drama ke kumpul wajib para mudabbir rayon GBSK. Bagaimanakah kelangsungan kumpul tersebut?",
     emoji: "🎬",
     color: "#FF6B00",
+    mcScript: `(Suasana kumpul mudabbir yang tegang di malam hari)
+Mudabbir 1: "Kita nggak bisa lembek! Aturan adalah aturan. Yang terlambat kumpul harus dihukum!"
+Mudabbir 2 (Bintang): "Tunggu dulu. Hukum itu ada untuk mendidik, bukan untuk balas dendam. Sudahkah kita bertanya kenapa mereka terlambat?"
+(Suasana menjadi hening. Pertanyaan filosofis tentang hakikat tarbiyah mulai muncul.)`,
   },
   {
     id: 16,
     order: 16,
+    pdfPage: 16,
     name: 'Puisi 5101: "Antara Uswah dan Amanah"',
     duration: "15 Menit",
     category: "Seni Theater",
@@ -350,10 +443,25 @@ Hati ini penuh dengan rasa terima kasih
     description: "Puisi sebagai lanjutan Drama POV 3 = Mudabbir yang akan membawakan 2 kata mulia: Uswah dan Hasanah, sebagai landasan dasar 'kemudabbiran' Pondok Modern Darussalam Gontor.",
     emoji: "📜",
     color: "#cc4400",
+    lyrics: `Amanah ini berat, saudaraku.
+Bukan sekadar jas yang rapi,
+Bukan sekadar lencana di dada,
+Tapi hisab di akhirat nanti.
+
+Kita dituntut menjadi uswah,
+Saat diri ini masih bergelimang salah.
+Kita dituntut menjadi teladan,
+Saat hati ini masih rapuh oleh godaan.
+
+Namun karena amanah ini dari-Nya,
+Kita melangkah, walau tertatih.
+Bismillah... Antara Uswah dan Amanah,
+Kita wujudkan Darussalam yang kaffah.`,
   },
   {
     id: 17,
     order: 17,
+    pdfPage: 17,
     name: 'Band 5101: "Tangguh"',
     duration: "10 Menit",
     category: "Seni Musik & Suara",
@@ -376,13 +484,12 @@ Dan matahari akan bersinar kembali
 Kami tangguh, kami kuat
 Tak ada rintangan yang tak bisa dilalui
 Kami tangguh, kami satu
-Bersama menuju cahaya yang nyata
-
-(Catatan: Lirik lengkap mengikuti aransemen Band 5101)`,
+Bersama menuju cahaya yang nyata`,
   },
   {
     id: 18,
     order: 18,
+    pdfPage: 18,
     name: "Tari Ratoeh Jaroe",
     duration: "4 Menit",
     category: "Seni Tari & Atraksi",
@@ -391,10 +498,15 @@ Bersama menuju cahaya yang nyata
     description: "Tari Ratoeh Jaroe merupakan tarian tradisonal Aceh dengan gerakan cepat, kompak, dinamis, dan energik.",
     emoji: "💫",
     color: "#e85d04",
+    lyrics: `(Nyanyian Syekh mengiringi gerakan rampak)
+"Jalo jalo jalo... hai adoe e..."
+"Lailahaillallah, kalimah tayyibah..."
+(Tepukan tangan bergemuruh menyatu dengan ritme badan yang dinamis)`,
   },
   {
     id: 19,
     order: 19,
+    pdfPage: 19,
     name: "Infinity Beatbox",
     duration: "4 Menit",
     category: "Seni Tari & Atraksi",
@@ -403,10 +515,15 @@ Bersama menuju cahaya yang nyata
     description: "Penampilan tari semi barat yang ditampilkan oleh santri dengan iringan musik yang dimainkan menggunakan mulut atau yang dikenal dengan beatbox.",
     emoji: "🎤",
     color: "#FF6B00",
+    lyrics: `(Suara beatbox dimulai secara akapela)
+"B t k t b t k t..."
+"Boom pf kach... wika wika scratch..."
+(Penari hip-hop mulai memasuki panggung, menyesuaikan gerakan popping dan locking dengan irama mulut)`,
   },
   {
     id: 20,
     order: 20,
+    pdfPage: 20,
     name: "Le Le Re Dance",
     duration: "4 Menit",
     category: "Seni Tari & Atraksi",
@@ -415,10 +532,15 @@ Bersama menuju cahaya yang nyata
     description: "Le le re dance atau yang lebih dikenal dengan tari India adalah bentuk seni kino yang menggabungkan antara spiritual, ritme, dan cerita, berakar dari teks suci Natya Shastra.",
     emoji: "💃",
     color: "#cc4400",
+    lyrics: `(Irama musik Bollywood yang meriah)
+"Ta thai thai tat, aa thai thai tat!"
+"Chaiyya chaiyya, chal chaiyya chaiyya..."
+(Gerakan tangan mudra berpadu dengan hentakan kaki gungroo yang rancak)`,
   },
   {
     id: 21,
     order: 21,
+    pdfPage: 21,
     name: "Band 5101: Medley Tongkrongan",
     duration: "5 Menit",
     category: "Seni Musik",
@@ -427,10 +549,18 @@ Bersama menuju cahaya yang nyata
     description: 'Band Drama Arena 5101 yang akan membawakan lagu dengan judul "Tongkrongan".',
     emoji: "🎵",
     color: "#FF6B00",
+    lyrics: `Tongkrongan kami bukan tongkrongan pecundang
+Bukan tongkrongan orang-orang murahan!
+Di sini kita merajut asa, 
+Di bawah langit senja kita tertawa!
+
+(Medley disambung dengan lagu-lagu persahabatan pop punk)
+"Dan ku tlah berjanji, untuk selalu menemani..."`,
   },
   {
     id: 22,
     order: 22,
+    pdfPage: 22,
     name: "Drama POV 4 = Atlan",
     duration: "10 Menit",
     category: "Seni Theater",
@@ -439,10 +569,14 @@ Bersama menuju cahaya yang nyata
     description: "Di scene kali ini akan menjelaskan tentang kehidupan santri kelas lima, melainkan mereka bukanlah mudabbir... siapakah mereka...?? yaps, mereka adalah ATLAN.",
     emoji: "🎭",
     color: "#e85d04",
+    mcScript: `Atlan 1: "Jadi mudabbir itu capek, bro. Kita ini Atlan, bebas merdeka! Nggak perlu ngurusin adek kelas."
+Atlan 2: "Bebas sih bebas. Tapi lihat mereka sibuk rapat, sibuk ngurus ini itu... kadang aku merasa kosong. Apa ya kontribusi kita buat rayon?"
+(Atlan mulai menyadari bahwa kebebasan tanpa tanggung jawab adalah kehampaan)`,
   },
   {
     id: 23,
     order: 23,
+    pdfPage: 23,
     name: "Raqs Arabian",
     duration: "4 Menit",
     category: "Seni Tari & Atraksi",
@@ -451,10 +585,15 @@ Bersama menuju cahaya yang nyata
     description: "Raqs Arabian atau yang dikenal dengan tari Arab merupakan tarian tradisional yang berasal dari Timur Tengah dengan sejarah yang cukup panjang meliputi tari perut (raqs sharqi), Dabke, dan Ardah.",
     emoji: "🌹",
     color: "#FF6B00",
+    lyrics: `(Irama gambus dan darbuka)
+"Ya Rayah, win msafar trouh taaya wa twali..."
+"Habibi ya nur el-ain, ya sakin khayali..."
+(Tarian Dabke dengan hentakan kaki yang kompak dan energik)`,
   },
   {
     id: 24,
     order: 24,
+    pdfPage: 24,
     name: "Art of Balance",
     duration: "4 Menit",
     category: "Seni Tari & Atraksi",
@@ -463,10 +602,14 @@ Bersama menuju cahaya yang nyata
     description: "Penampilan atraksi yang menggunakan alat juggling tradisional berasal dari Cina atau yang sering disebut dengan Diabolo. Alat ini dimainkan dengan cara memutar cepat bola atau (yoyo) dengan talinya.",
     emoji: "⚖️",
     color: "#cc4400",
+    mcScript: `(MC memberikan narasi diiringi musik oriental)
+"Keseimbangan adalah kunci kehidupan. Terlalu cepat ia akan jatuh, terlalu lambat ia akan terhenti."
+"Lihatlah Art of Balance! Diabolo menari di atas tali, melawan gravitasi, membelah udara dengan presisi mutlak!"`,
   },
   {
     id: 25,
     order: 25,
+    pdfPage: 25,
     name: "Hikaru Toki DA",
     duration: "4 Menit",
     category: "Seni Tari & Atraksi",
@@ -475,10 +618,16 @@ Bersama menuju cahaya yang nyata
     description: "Pertunjukan tari modern ala Jepang (Wotagei) yang identik menggunakan tongkat bercahaya (lightstick) dan gerakan khusus seperti romansu atau thunder snake.",
     emoji: "✨",
     color: "#FF6B00",
+    lyrics: `(Musik J-Pop upbeat mengalun keras. Lampu panggung dimatikan.)
+(Sorakan Wotagei menggema dari para penari)
+"Tiger! Fire! Cyber! Fiber! Diver! Viber! Jya Jya!"
+"Romansu! Thunder Snake!"
+(Lautan lightstick oranye menyala dan berputar dalam kegelapan membentuk formasi bintang)`,
   },
   {
     id: 26,
     order: 26,
+    pdfPage: 26,
     name: "Tong Basudara",
     duration: "4 Menit",
     category: "Seni Tari & Atraksi",
@@ -487,10 +636,15 @@ Bersama menuju cahaya yang nyata
     description: "Pementasan tari asyik khas Jawa yang memadukan alat musik tradisional dengan instrumen modern seperti keyboard, gitar, dan ukulele.",
     emoji: "🥁",
     color: "#e85d04",
+    lyrics: `(Irama musik Timur Indonesia yang riang)
+"E Mambo Simbo... E Mambo Simbo..."
+"Tong basudara, dari ujung ke ujung!"
+(Tarian enerjik yang menggambarkan persatuan masyarakat Timur dengan senyum lebar)`,
   },
   {
     id: 27,
     order: 27,
+    pdfPage: 27,
     name: "Drama POV 5 = Pijar",
     duration: "10 Menit",
     category: "Seni Theater",
@@ -499,10 +653,15 @@ Bersama menuju cahaya yang nyata
     description: "Drama berpindah fokus ke aggonta rayon GBSK. Bagaimanakah kelah kesuh mereka menjadi anggota rayon? Apakah mereka hidup dalam rayon yang 'Maskani Jannati'? Ataukah... sebaliknya?",
     emoji: "🔥",
     color: "#FF6B00",
+    mcScript: `(Semua karakter dari POV sebelumnya berkumpul di atas panggung)
+Pijar: "Kita semua adalah cahaya. Mudabbir yang mendidik, Atlan yang mencari jati diri, Azka yang belajar sabar, dan Bintang yang menaungi."
+"Inilah Gontor. Menggembleng besi menjadi baja. Membakar kayu menjadi pijar api yang menerangi."
+(Lampu menyala terang. Para aktor bergandengan tangan, siap menyambut Grand Closing.)`,
   },
   {
     id: 28,
     order: 28,
+    pdfPage: 28,
     name: 'Grand Closing: "Api Perjuangan"',
     duration: "5 Menit",
     category: "Seni Musik & Suara",

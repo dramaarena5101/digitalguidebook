@@ -98,10 +98,13 @@ function PerfCard({ perf, onClick }) {
 }
 
 // ── Modal ───────────────────────────────────────────────────────────────────
+// ── Modal ───────────────────────────────────────────────────────────────────
 function Modal({ perf, onClose }) {
+  const [showPdf, setShowPdf] = useState(false);
   if (!perf) return null;
   const color = catColor[perf.category] || "#FF6B00";
   const bg = catBg[perf.category] || "#FFF0E6";
+
   return (
     <AnimatePresence>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -109,12 +112,12 @@ function Modal({ perf, onClose }) {
         <motion.div initial={{ scale: 0.95, opacity: 0, y: 12 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0 }}
           transition={{ type: "spring", damping: 26, stiffness: 280 }}
           onClick={e => e.stopPropagation()}
-          style={{ maxWidth: 640, width: "100%", borderRadius: 24, background: "#fff", border: "1px solid #E5E7EB", padding: "2rem", position: "relative", boxShadow: "0 24px 64px rgba(0,0,0,0.15)", maxHeight: "88vh", overflowY: "auto" }}>
+          style={{ maxWidth: 1100, width: "100%", borderRadius: 24, background: "#fff", border: "1px solid #E5E7EB", padding: "2rem", position: "relative", boxShadow: "0 24px 64px rgba(0,0,0,0.15)", maxHeight: "90vh", display: "flex", flexDirection: "column", overflow: "hidden" }}>
 
-          <button onClick={onClose} style={{ position: "absolute", top: 16, right: 16, width: 36, height: 36, borderRadius: "50%", border: "none", background: "#F3F4F6", cursor: "pointer", fontSize: 18, color: "#6B7280", display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
+          <button onClick={onClose} style={{ position: "absolute", top: 16, right: 16, width: 36, height: 36, borderRadius: "50%", border: "none", background: "#F3F4F6", cursor: "pointer", fontSize: 18, color: "#6B7280", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10 }}>✕</button>
 
           {/* Header */}
-          <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 20 }}>
+          <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 24 }}>
             <div style={{ width: 56, height: 56, borderRadius: 14, background: bg, display: "flex", alignItems: "center", justifyContent: "center", color, flexShrink: 0 }}>
               {catIcon[perf.category] || catIcon["Seni Musik & Suara"]}
             </div>
@@ -124,61 +127,104 @@ function Modal({ perf, onClose }) {
             </div>
           </div>
 
-          {/* Description */}
-          <p style={{ fontFamily: FONT.neulis, fontSize: 14, color: "#6B7280", lineHeight: 1.8, marginBottom: 20, padding: "1rem", background: "#F9FAFB", borderRadius: 14 }}>{perf.description}</p>
-
-          {/* Stats */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 20 }}>
-            {[["Kategori", perf.category], ["Durasi", perf.duration], ["Peserta", perf.participants === -1 ? "Seluruh Kelas 5" : `${perf.participants} Orang`]].map(([l, v]) => (
-              <div key={l} style={{ padding: "0.875rem", borderRadius: 12, background: "#F9FAFB", border: "1px solid #F3F4F6" }}>
-                <div style={{ fontFamily: FONT.neulis, fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 4 }}>{l}</div>
-                <div style={{ fontFamily: FONT.neulis, fontSize: 13, fontWeight: 700, color: "#111827" }}>{v}</div>
-              </div>
-            ))}
+          {/* Controls */}
+          <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
+            <button 
+              onClick={() => setShowPdf(false)}
+              style={{ padding: "8px 16px", borderRadius: 99, border: "none", background: !showPdf ? "#111827" : "#F3F4F6", color: !showPdf ? "#fff" : "#6B7280", fontFamily: FONT.neulis, fontSize: 11, fontWeight: 700, letterSpacing: "0.05em", cursor: "pointer", transition: "all 0.2s" }}
+            >
+              DETAIL TEKS
+            </button>
+            <button 
+              onClick={() => setShowPdf(true)}
+              style={{ padding: "8px 16px", borderRadius: 99, border: "none", background: showPdf ? "#FF6B00" : "#F3F4F6", color: showPdf ? "#fff" : "#6B7280", fontFamily: FONT.neulis, fontSize: 11, fontWeight: 700, letterSpacing: "0.05em", cursor: "pointer", transition: "all 0.2s" }}
+            >
+              PRATINJAU DESAIN (PDF)
+            </button>
           </div>
 
-          {/* Lyrics / Script */}
-          {perf.lyrics && (
-            <div style={{ marginBottom: 20 }}>
-              <div style={{ fontFamily: FONT.neulis, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 10 }}>Lirik Lagu</div>
-              <div style={{ padding: "1.25rem", borderRadius: 14, background: "#FFF0E6", border: "1px solid #FDDCBF", fontFamily: FONT.wondra, fontSize: 15, fontStyle: "italic", color: "#374151", lineHeight: 1.9, whiteSpace: "pre-line" }}>
-                {perf.lyrics}
-              </div>
-            </div>
-          )}
-          {perf.mcScript && (
-            <div style={{ marginBottom: 20 }}>
-              <div style={{ fontFamily: FONT.neulis, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 10 }}>Teks MC</div>
-              <div style={{ padding: "1.25rem", borderRadius: 14, background: "#F9FAFB", border: "1px solid #E5E7EB", fontFamily: FONT.neulis, fontSize: 14, color: "#374151", lineHeight: 1.85, whiteSpace: "pre-line" }}>
-                {perf.mcScript}
-              </div>
-            </div>
-          )}
-          {perf.songs && (
-            <div style={{ marginBottom: 20 }}>
-              <div style={{ fontFamily: FONT.neulis, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 10 }}>Daftar Lagu</div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                {perf.songs.map((s, i) => (
-                  <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "0.75rem 1rem", borderRadius: 12, background: "#F9FAFB" }}>
-                    <span style={{ fontFamily: FONT.bebas, fontSize: 18, color: "#FF6B00", flexShrink: 0 }}>{String(i + 1).padStart(2, "0")}</span>
-                    <div>
-                      <div style={{ fontFamily: FONT.neulis, fontSize: 13, fontWeight: 700, color: "#111827" }}>{s.title}</div>
-                      {s.desc && <div style={{ fontFamily: FONT.neulis, fontSize: 12, color: "#6B7280", marginTop: 2 }}>{s.desc}</div>}
+          {/* Content Area */}
+          <div style={{ flex: 1, overflowY: "auto", paddingRight: 8 }} className="custom-scroll">
+            {!showPdf ? (
+              <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}>
+                {/* Description */}
+                <p style={{ fontFamily: FONT.neulis, fontSize: 14, color: "#6B7280", lineHeight: 1.8, marginBottom: 24, padding: "1.25rem", background: "#F9FAFB", borderRadius: 16 }}>{perf.description}</p>
+
+                {/* Stats */}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 12, marginBottom: 24 }}>
+                  {[["Kategori", perf.category], ["Durasi", perf.duration], ["Peserta", perf.participants === -1 ? "Seluruh Kelas 5" : `${perf.participants} Orang`]].map(([l, v]) => (
+                    <div key={l} style={{ padding: "1rem", borderRadius: 14, background: "#fff", border: "1.2px solid #F3F4F6", boxShadow: "0 2px 8px rgba(0,0,0,0.02)" }}>
+                      <div style={{ fontFamily: FONT.neulis, fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 6 }}>{l}</div>
+                      <div style={{ fontFamily: FONT.neulis, fontSize: 13, fontWeight: 700, color: "#111827" }}>{v}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Lyrics / Script */}
+                {perf.lyrics && (
+                  <div style={{ marginBottom: 24 }}>
+                    <div style={{ fontFamily: FONT.neulis, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 12 }}>Lirik Lagu</div>
+                    <div style={{ padding: "1.5rem", borderRadius: 18, background: "#FFF0E6", border: "1px solid #FDDCBF", fontFamily: FONT.wondra, fontSize: 17, fontStyle: "italic", color: "#374151", lineHeight: 1.9, whiteSpace: "pre-line" }}>
+                      {perf.lyrics}
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-          )}
+                )}
+                {perf.mcScript && (
+                  <div style={{ marginBottom: 24 }}>
+                    <div style={{ fontFamily: FONT.neulis, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 12 }}>Teks MC / Dialog</div>
+                    <div style={{ padding: "1.5rem", borderRadius: 18, background: "#F9FAFB", border: "1px solid #E5E7EB", fontFamily: FONT.neulis, fontSize: 14, color: "#374151", lineHeight: 1.85, whiteSpace: "pre-line" }}>
+                      {perf.mcScript}
+                    </div>
+                  </div>
+                )}
+                {perf.songs && (
+                  <div style={{ marginBottom: 24 }}>
+                    <div style={{ fontFamily: FONT.neulis, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 12 }}>Daftar Lagu</div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                      {perf.songs.map((s, i) => (
+                        <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start", padding: "1rem 1.25rem", borderRadius: 16, background: "#F9FAFB", border: "1px solid #F3F4F6" }}>
+                          <span style={{ fontFamily: FONT.bebas, fontSize: 20, color: "#FF6B00", flexShrink: 0 }}>{String(i + 1).padStart(2, "0")}</span>
+                          <div>
+                            <div style={{ fontFamily: FONT.neulis, fontSize: 14, fontWeight: 700, color: "#111827" }}>{s.title}</div>
+                            {s.desc && <div style={{ fontFamily: FONT.neulis, fontSize: 13, color: "#6B7280", marginTop: 4 }}>{s.desc}</div>}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-          {/* Supervisors */}
-          <div>
-            <div style={{ fontFamily: FONT.neulis, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 10 }}>Pembimbing</div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {perf.supervisors.map((s, i) => (
-                <span key={i} style={{ padding: "5px 14px", borderRadius: 999, background: "#F9FAFB", border: "1px solid #E5E7EB", fontFamily: FONT.neulis, fontSize: 12, fontWeight: 600, color: "#374151" }}>{s}</span>
-              ))}
-            </div>
+                {/* Supervisors */}
+                <div style={{ marginBottom: 24 }}>
+                  <div style={{ fontFamily: FONT.neulis, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 12 }}>Pembimbing</div>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                    {perf.supervisors.map((s, i) => (
+                      <span key={i} style={{ padding: "6px 16px", borderRadius: 999, background: "#F9FAFB", border: "1px solid #E5E7EB", fontFamily: FONT.neulis, fontSize: 12, fontWeight: 600, color: "#374151" }}>{s}</span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}
+                style={{ height: "100%", minHeight: 450, borderRadius: 16, overflow: "hidden", background: "#F9FAFB", border: "1px solid #E5E7EB", display: "flex", flexDirection: "column", position: "relative" }}>
+                <div style={{ padding: "12px 16px", background: "#fff", borderBottom: "1px solid #E5E7EB", fontFamily: FONT.neulis, fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: "#6B7280", display: "flex", justifyContent: "space-between", zIndex: 5 }}>
+                  <span>PRATINJAU DESAIN</span>
+                  <span style={{ color: "#FF6B00" }}>HALAMAN {perf.pdfPage || perf.order}</span>
+                </div>
+                <iframe 
+                  src={`/guidebook.pdf#page=${perf.pdfPage || perf.order}&view=Fit&toolbar=0&navpanes=0&scrollbar=0`} 
+                  title="PDF Preview"
+                  style={{ width: "100%", flex: 1, border: "none", background: "#fff" }}
+                />
+                <button 
+                  onClick={() => window.open(`/guidebook.pdf#page=${perf.pdfPage || perf.order}&view=Fit`, '_blank')}
+                  style={{ position: "absolute", bottom: 16, right: 16, padding: "10px 20px", borderRadius: 99, background: "rgba(17,24,39,0.8)", backdropFilter: "blur(4px)", color: "#fff", border: "none", cursor: "pointer", fontFamily: FONT.neulis, fontSize: 10, fontWeight: 700, letterSpacing: "0.05em", display: "flex", alignItems: "center", gap: 8 }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  LIHAT FULLSCREEN
+                </button>
+              </motion.div>
+            )}
           </div>
         </motion.div>
       </motion.div>
@@ -288,9 +334,20 @@ export default function Performances() {
               DAFTAR <span style={{ color: "#9CA3AF" }}>PENAMPILAN</span>
             </h2>
           </div>
-          <p style={{ fontFamily: FONT.neulis, fontSize: 15, color: "#6B7280", maxWidth: 360, lineHeight: 1.8 }}>
-            28 penampilan memukau dari 4 kategori seni yang berbeda, disajikan oleh 440 santri terbaik kelas 5 KMI.
-          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <p style={{ fontFamily: FONT.neulis, fontSize: 15, color: "#6B7280", maxWidth: 360, lineHeight: 1.8, margin: 0 }}>
+              28 penampilan memukau dari 4 kategori seni yang berbeda, disajikan oleh 440 santri terbaik kelas 5 KMI.
+            </p>
+            <motion.button 
+              whileHover={{ scale: 1.05, backgroundColor: "#FF6B00", boxShadow: "0 8px 24px rgba(255,107,0,0.3)" }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => window.open('/guidebook.pdf', '_blank')}
+              style={{ width: "fit-content", padding: "10px 20px", borderRadius: 999, background: "#111827", color: "#fff", border: "none", cursor: "pointer", fontFamily: FONT.neulis, fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", display: "flex", alignItems: "center", gap: 8, transition: "all 0.2s" }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              LIHAT FULL GUIDEBOOK
+            </motion.button>
+          </div>
         </motion.div>
 
         {/* Animated Stats */}

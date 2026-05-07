@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { eventObjectives, logoPhilosophy } from "../content";
+import { eventObjectives, logoPhilosophy, eventInfo } from "../content";
 
 const FONT_NEULIS  = "'Plus Jakarta Sans', sans-serif";
 const FONT_WONDRA  = "'Cormorant Garamond', serif";
@@ -123,9 +123,9 @@ export default function About() {
           <Fade delay={0.1}>
             <div style={S.card}>
               <div style={{ fontFamily: FONT_NEULIS, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 16 }}>Nama Acara</div>
-              <div style={{ fontFamily: FONT_WONDRA, fontSize: 36, fontWeight: 700, color: "#111827", marginBottom: 16, lineHeight: 1.15 }}>Drama Arena 5101</div>
+              <div style={{ fontFamily: FONT_WONDRA, fontSize: 36, fontWeight: 700, color: "#111827", marginBottom: 16, lineHeight: 1.15 }}>{eventInfo.name}</div>
               <p style={{ fontFamily: FONT_NEULIS, fontSize: 15, color: "#6B7280", lineHeight: 1.75 }}>
-                Geladi Suci Pagelaran Seni siswa kelas 5 KMI Pondok Modern Darussalam Gontor periode 1447-1448 / 2026-2027.
+                Pagelaran Seni Akbar siswa kelas 5 KMI Pondok Modern Darussalam Gontor periode {eventInfo.period}.
               </p>
             </div>
           </Fade>
@@ -134,8 +134,8 @@ export default function About() {
               <div style={{ position: "absolute", top: -40, right: -40, width: 180, height: 180, borderRadius: "50%", background: "rgba(255,107,0,0.1)", filter: "blur(40px)" }} />
               <div style={{ fontFamily: FONT_NEULIS, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#FF6B00", marginBottom: 16, position: "relative" }}>Moto Acara</div>
               <div style={{ position: "relative" }}>
-                <p style={{ fontFamily: FONT_WONDRA, fontSize: "clamp(20px, 2.5vw, 30px)", fontWeight: 600, fontStyle: "italic", color: "#374151", lineHeight: 1.4, marginBottom: 6 }}>"Nyalakan Api Kebersamaan,</p>
-                <p style={{ fontFamily: FONT_WONDRA, fontSize: "clamp(20px, 2.5vw, 30px)", fontWeight: 700, fontStyle: "italic", color: "#FF6B00", lineHeight: 1.4 }}>Wujudkan Idealisme Kehidupan."</p>
+                <p style={{ fontFamily: FONT_WONDRA, fontSize: "clamp(20px, 2.5vw, 30px)", fontWeight: 600, fontStyle: "italic", color: "#374151", lineHeight: 1.4, marginBottom: 6 }}>"{eventInfo.motto.split(',')[0]},</p>
+                <p style={{ fontFamily: FONT_WONDRA, fontSize: "clamp(20px, 2.5vw, 30px)", fontWeight: 700, fontStyle: "italic", color: "#FF6B00", lineHeight: 1.4 }}>{eventInfo.motto.split(',')[1]}."</p>
               </div>
             </div>
           </Fade>
@@ -148,10 +148,10 @@ export default function About() {
             <div style={{ fontFamily: FONT_NEULIS, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 28, paddingLeft: 16 }}>Waktu & Tempat</div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 28, paddingLeft: 16 }}>
               {[
-                ["📅", "Hari/Tanggal", "Selasa, 18 Dzulqa'dah 1447H"],
-                ["⏱", "Waktu", "Pukul 19.15 s.d. selesai"],
-                ["📍", "Tempat", "Depan Lab KMI, Gontor"],
-                ["👤", "Pimpinan", "Ust. Ahmad Nur Fajar"],
+                ["📅", "Hari/Tanggal", eventInfo.date.split('/')[0].trim()],
+                ["⏱", "Waktu", eventInfo.time],
+                ["📍", "Tempat", eventInfo.venue],
+                ["👤", "Pembimbing", eventInfo.picInCharge],
               ].map(([icon, label, val]) => (
                 <div key={label} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
                   <div style={{ width: 44, height: 44, borderRadius: 12, background: "#fff", border: "1px solid #E5E7EB", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>{icon}</div>

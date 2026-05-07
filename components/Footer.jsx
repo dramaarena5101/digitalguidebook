@@ -73,7 +73,7 @@ export function Footer() {
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               <div>
                 <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 6 }}>Lokasi</div>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "#374151", fontWeight: 500, lineHeight: 1.6 }}>Depan Gedung Laboratorium KMI, Pondok Modern Darussalam Gontor.</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "#374151", fontWeight: 500, lineHeight: 1.6 }}>{eventInfo.venue}</p>
               </div>
               <div>
                 <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 6 }}>Waktu</div>
@@ -89,7 +89,7 @@ export function Footer() {
             © 2026 Drama Arena 5101. All rights reserved.
           </p>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "#9CA3AF", fontWeight: 600, letterSpacing: "0.05em" }}>
-            Powered by <span style={{ color: "#374151" }}>Class 5 KMI</span>
+            Powered by <span style={{ color: "#374151" }}>Panitia Drama Arena 5101</span>
           </p>
         </div>
       </div>

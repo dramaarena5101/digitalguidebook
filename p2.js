@@ -1,0 +1,1 @@
+import fs from 'fs'; import PDFParser from 'pdf2json'; const pdfParser = new PDFParser(this, 1); pdfParser.on('pdfParser_dataReady', pdfData =, pdfParser.getRawTextContent())); pdfParser.loadPDF('Guide Book DA 5101.pdf');  
