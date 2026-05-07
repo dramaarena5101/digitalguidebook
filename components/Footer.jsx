@@ -19,8 +19,8 @@ export function Ticker() {
             opacity: 0.15, transition: "opacity 0.3s", cursor: "default",
             marginRight: "3rem"
           }}
-          onMouseEnter={e => e.target.style.opacity = "1"}
-          onMouseLeave={e => e.target.style.opacity = "0.15"}
+            onMouseEnter={e => e.target.style.opacity = "1"}
+            onMouseLeave={e => e.target.style.opacity = "0.15"}
           >
             {item}
           </span>
@@ -41,7 +41,9 @@ export function Footer() {
           {/* Brand */}
           <div style={{ gridColumn: "span 1" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 48, height: 48, borderRadius: 12, background: "#fff", border: "1.5px solid #E5E7EB", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Bebas Neue', cursive", fontSize: 20, color: "#111827", boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}>DA</div>
+              <div style={{ width: 48, height: 48, borderRadius: 12, background: "#fff", border: "1.5px solid #E5E7EB", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Bebas Neue', cursive", fontSize: 20, color: "#111827", boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}><div style={{ width: 40, height: 40, borderRadius: 10, border: "1.5px solid #FDDCBF", background: "#FFF0E6", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", flexShrink: 0 }}>
+                <img src="/logo.png" alt="DA" style={{ width: "100%", height: "100%", objectFit: "cover" }} onError={e => { e.target.style.display = "none"; e.target.parentElement.innerHTML = `<span style="font-family:'Bebas Neue',cursive;font-size:16px;color:#FF6B00">DA</span>`; }} />
+              </div></div>
               <div>
                 <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 22, letterSpacing: "0.05em", color: "#111827", lineHeight: 1 }}>DRAMA ARENA 5101</div>
                 <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#FF6B00" }}>Digital Guidebook</div>
