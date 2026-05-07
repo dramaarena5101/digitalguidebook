@@ -2,8 +2,8 @@ export const eventInfo = {
   name: "Drama Arena 5101",
   subtitle: "Five a Hundred One",
   motto: "Nyalakan Api Kebersamaan, Wujudkan Idealisme Kehidupan",
-  date: "Kamis, 20 Dzulqa'dah 1447H / 07 Mei 2026M",
-  time: "Pukul 19.15 s.d. selesai",
+  date: "Kamis, 21 Dzulqa'dah 1447H / 07 Mei 2026M",
+  time: "Pukul 19.30 s.d. selesai",
   venue: "Depan Balai Pertemuan Pondok Modern Darussalam Gontor",
   period: "1447-1448 / 2026-2027",
   organizer: "Siswa Kelas 5 KMI Pondok Modern Darussalam Gontor",
@@ -72,26 +72,26 @@ export const judges = {
     "H. Ismail Abdullah Budi Prasetyo, S.Ag.",
     "K.H. Masyhudi Subari, M.A.",
     "Prof. Dr. K.H. Hamid Fahmi Zarkasyi, M.A.Ed., M.Phil.",
-    "Assoc. Prof. Dr. H. Mulyono Jamal, M.A.",
+    "Prof. Dr. K.H. Husnan Bey Fananie, M.A.",
     "Assoc. Prof. Dr. H. Ahmad Hidayatullah Zarkasyi, M.A."
   ],
   dewanJuri: [
-    "Dr. H. Ahmad Suharto M.Pd.I.",
-    "Drs. H. Rif'at Husnul Ma'afi, M.Ag.",
-    "Ahmad Saefullah, M.Pd.I., P.hd.",
-    "H. Nazeeh M Soebari, Lc.",
-    "H. Saepul Anwar, M.Pd.",
-    "Dr. Khasib Amrullah, S.Ag., M.Ud.",
-    "Drs. H. Sutrisno Ahmad, Dipl.A.",
-    "H. Muhammad Syuja'i, S.Ag.",
-    "Dr. M. Kurnia Rahman Abadi, MM.",
-    "H. Farid Sulistyo, Lc.",
-    "H. Nashruddin, Lc.",
-    "H. Anwar Boyaman",
-    "H. Husni Dzahaby, Lc.",
-    "Hakam Ar Rosyada, M.Pd.I.",
-    "Hasan Mutaqien, S.Th.I., M.Pd.",
-    "Hendri Setiyo Wibowo, S.Th.I., M.H."
+    { name: "Dr. H. Ahmad Suharto, M.Pd.I.", role: "Ketua Juri" },
+    { name: "Drs. H. Rif'at Husnul Ma'afi, M.Ag.", role: "Ketua Juri" },
+    { name: "Ahmad Saefullah, Ph.D.", role: "Sekretaris" },
+    { name: "H. Nazeeh M Soebari, Lc.", role: "Sekretaris" },
+    { name: "H. Anwar Boyaman", role: "Acara & Properti" },
+    { name: "Afique Rahmadlansyah, S.E.I., M.Med.Kom.", role: "Acara & Properti" },
+    { name: "Hasan Muttaqin, S.Th.I., M.Pd.", role: "Seni Musik & Suara" },
+    { name: "Hendri Setiyo Wibowo, M.H.", role: "Seni Musik & Suara" },
+    { name: "Drs. H. Sutrisno Ahmad, Dipl. A.", role: "Seni Tari & Atraksi" },
+    { name: "H. Muhammad Syuja'i, S.Ag.", role: "Seni Tari & Atraksi" },
+    { name: "Dr. Khasib Amrullah, S.Ag., M.Ud.", role: "Seni Teater" },
+    { name: "H. Saepul Anwar, M.Pd.", role: "Seni Teater" },
+    { name: "H. Farid Sulistyo, Lc.", role: "Seni Bahasa" },
+    { name: "Dr. M. Kurnia Rahman Abadi, MM.", role: "Seni Bahasa" },
+    { name: "Hakam Ar Rosyada, M.Pd.I.", role: "Non Performance" },
+    { name: "H. Husni Dzahaby, Lc.", role: "Non Performance" }
   ]
 };
 
@@ -117,6 +117,7 @@ export const performances = [
 وَاغْفِرْ لَنَا مَا مَضَى يَا وَاسِعَ الكَرَمِ
 عَلَيْكَ يَا رَسُولَ اللهِ الصَّلَاةُ وَالسَّلَامُ
 وَالْأَنْبِيَاءُ وَالْمُرْسَلِينَ لَا غَيْرَ خَاتِمٍ أَوَّلًا`,
+    posterUrl: "/Acara/acara1.jpg"
   },
   {
     id: 2,
@@ -145,6 +146,7 @@ Ayo kita lomba sihir!
 Siapa yang paling berani?
 Ayo kita buktikan
 Bahwa kita bisa bersinar!`,
+    posterUrl: "/Acara/acara2.jpg"
   },
   {
     id: 3,
@@ -197,6 +199,7 @@ Ayat: 133 – 136
 وَٱلَّذِينَ إِذَا فَعَلُوا۟ فَٰحِشَةً أَوْ ظَلَمُوٓا۟ أَنفُسَهُمْ ذَكَرُوا۟ ٱللَّهَ فَٱسْتَغْفَرُوا۟ لِذُنُوبِهِمْ وَمَن يَغْفِرُ ٱلذُّنُوبَ إِلَّا ٱللَّهُ وَلَمْ يُصِرُّوا۟ عَلَىٰ مَا فَعَلُوا۟ وَهُمْ يَعْلَمُونَ (١٣٥)
 
 أُو۟لَٰٓئِكَ جَزَآؤُهُم مَّغْفِرَةٌ مِّن رَّبِّهِمْ وَجَنَّٰتٌ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَٰرُ خَٰلِدِينَ فِيهَا ۚ وَنِعْمَ أَجْرُ ٱلْعَٰمِلِينَ (١٣٦)`,
+    posterUrl: "/Acara/acara4.jpg"
   },
   {
     id: 5,
@@ -219,6 +222,7 @@ Ayat: 133 – 136
 Bismillah. Yang terhormat Bapak Pimpinan Pondok Modern Darussalam Gontor,
 Yang kami hormati para Asatidz dan seluruh hadirin sekalian.
 Drama Arena ini bukan sekadar panggung hiburan, melainkan panggung pendidikan, panggung perjuangan, dan pembuktian jati diri kelas 5!`,
+    posterUrl: "/Acara/acara5.jpg"
   },
   {
     id: 6,
@@ -242,6 +246,7 @@ It's time to shine! It's time to rise!
 Kami datang membawa cahaya
 Bersama dalam satu asa
 Wujudkan idealisme kehidupan!`,
+    posterUrl: "/Acara/acara6.jpg"
   },
   {
     id: 7,
@@ -260,6 +265,7 @@ Bintang: "Siapa bilang jadi ketua itu mudah? Di sini, di GBSK, kita bukan sekada
 Anggota 1: "Kak Bintang! Sandalku hilang lagi!"
 Bintang: (Tersenyum tipis) "Sandal hilang itu ujian keikhlasan. Ayo, kita cari bersama. Jangan sampai hilangnya sandal menghilangkan ukhuwah kita."
 (Lampu meredup, musik dramatis mengalun)`,
+    posterUrl: "/Acara/acara7.jpg"
   },
   {
     id: 8,
@@ -295,6 +301,7 @@ Namun persaudaraan ini kan abadi...`,
       { title: "Spontan (Uhuy)", desc: "Lagu ceria penuh semangat tentang kehidupan di Darussalam" },
       { title: "Ini Abadi", desc: "Lagu penuh makna tentang kenangan indah yang tak akan terlupakan" },
     ],
+    posterUrl: "/Acara/acara8.jpg"
   },
   {
     id: 9,
@@ -323,6 +330,7 @@ Syukur Alhamdulillah, Alhamdulillah
 Atas semua yang Engkau berikan
 Syukur Alhamdulillah, Alhamdulillah
 Hati ini penuh dengan rasa terima kasih`,
+    posterUrl: "/Acara/acara9.jpg"
   },
   {
     id: 10,
@@ -339,6 +347,7 @@ Hati ini penuh dengan rasa terima kasih`,
     mcScript: `Azka: (Mengusap keringat setelah lari) "Maskani Jannati... asramaku surgaku. Surga apanya kalau air di kamar mandi mati?!"
 Teman Azka: "Sabar, Zka. Ini namanya tarbiyah. Air mati berarti kita harus belajar mengalirkan kesabaran."
 Azka: "Kesabaran nggak bisa buat mandi! Tapi... ya sudah lah, ini Gontor. Kalau nggak gini, nggak ada cerita buat masa depan."`,
+    posterUrl: "/Acara/acara10.jpg"
   },
   {
     id: 11,
@@ -360,6 +369,7 @@ Tari zapin langkah bersusun
 Bawa rebana irama dialun
 Kami datang membawa santun
 Moga hadirin semuanya rukun.`,
+    posterUrl: "/Acara/acara11.jpg"
   },
   {
     id: 12,
@@ -378,6 +388,7 @@ Moga hadirin semuanya rukun.`,
 (Penari menghentakkan kaki, memamerkan kostum meriah dengan hiasan kepala bulu-bulu)
 "Sura dira jayaning rat, lebur dening pangastuti!"
 (Kejahatan sebesar apapun akan lebur oleh kebaikan)`,
+    posterUrl: "/Acara/acara12.jpg"
   },
   {
     id: 13,
@@ -395,6 +406,7 @@ Moga hadirin semuanya rukun.`,
 "Euy! Euy! Maju terus pantang mundur!"
 "Singa depa jadi macan, urang sunda wani tarung!"
 (Para penari mengusung sisingaan sambil melakukan gerakan akrobatik dan pencak silat)`,
+    posterUrl: "/Acara/acara13.jpg"
   },
   {
     id: 14,
@@ -413,6 +425,7 @@ Moga hadirin semuanya rukun.`,
 "Cendol dawet, lima ratusan, nggak pakai ketan!"
 "Tarik sis, semongko!"
 (Penari melakukan gerakan asyik dan kompak dengan ritme ska dan dangdut)`,
+    posterUrl: "/Acara/acara14.jpg"
   },
   {
     id: 15,
@@ -430,6 +443,7 @@ Moga hadirin semuanya rukun.`,
 Mudabbir 1: "Kita nggak bisa lembek! Aturan adalah aturan. Yang terlambat kumpul harus dihukum!"
 Mudabbir 2 (Bintang): "Tunggu dulu. Hukum itu ada untuk mendidik, bukan untuk balas dendam. Sudahkah kita bertanya kenapa mereka terlambat?"
 (Suasana menjadi hening. Pertanyaan filosofis tentang hakikat tarbiyah mulai muncul.)`,
+    posterUrl: "/Acara/acara15.jpg"
   },
   {
     id: 16,
@@ -457,6 +471,7 @@ Namun karena amanah ini dari-Nya,
 Kita melangkah, walau tertatih.
 Bismillah... Antara Uswah dan Amanah,
 Kita wujudkan Darussalam yang kaffah.`,
+    posterUrl: "/Acara/acara16.jpg"
   },
   {
     id: 17,
@@ -485,6 +500,7 @@ Kami tangguh, kami kuat
 Tak ada rintangan yang tak bisa dilalui
 Kami tangguh, kami satu
 Bersama menuju cahaya yang nyata`,
+    posterUrl: "/Acara/acara17.jpg"
   },
   {
     id: 18,
@@ -502,6 +518,7 @@ Bersama menuju cahaya yang nyata`,
 "Jalo jalo jalo... hai adoe e..."
 "Lailahaillallah, kalimah tayyibah..."
 (Tepukan tangan bergemuruh menyatu dengan ritme badan yang dinamis)`,
+    posterUrl: "/Acara/acara18.jpg"
   },
   {
     id: 19,
@@ -515,6 +532,7 @@ Bersama menuju cahaya yang nyata`,
     description: "Penampilan tari semi barat yang ditampilkan oleh santri dengan iringan musik yang dimainkan menggunakan mulut atau yang dikenal dengan beatbox.",
     emoji: "🎤",
     color: "#FF6B00",
+    posterUrl: "/Acara/acara19.jpg",
     lyrics: `(Suara beatbox dimulai secara akapela)
 "B t k t b t k t..."
 "Boom pf kach... wika wika scratch..."
@@ -532,6 +550,7 @@ Bersama menuju cahaya yang nyata`,
     description: "Le le re dance atau yang lebih dikenal dengan tari India adalah bentuk seni kino yang menggabungkan antara spiritual, ritme, dan cerita, berakar dari teks suci Natya Shastra.",
     emoji: "💃",
     color: "#cc4400",
+    posterUrl: "/Acara/acara20.jpg",
     lyrics: `(Irama musik Bollywood yang meriah)
 "Ta thai thai tat, aa thai thai tat!"
 "Chaiyya chaiyya, chal chaiyya chaiyya..."
@@ -556,6 +575,7 @@ Di bawah langit senja kita tertawa!
 
 (Medley disambung dengan lagu-lagu persahabatan pop punk)
 "Dan ku tlah berjanji, untuk selalu menemani..."`,
+    posterUrl: "/Acara/acara21.jpg"
   },
   {
     id: 22,
@@ -572,6 +592,7 @@ Di bawah langit senja kita tertawa!
     mcScript: `Atlan 1: "Jadi mudabbir itu capek, bro. Kita ini Atlan, bebas merdeka! Nggak perlu ngurusin adek kelas."
 Atlan 2: "Bebas sih bebas. Tapi lihat mereka sibuk rapat, sibuk ngurus ini itu... kadang aku merasa kosong. Apa ya kontribusi kita buat rayon?"
 (Atlan mulai menyadari bahwa kebebasan tanpa tanggung jawab adalah kehampaan)`,
+    posterUrl: "/Acara/acara22.jpg"
   },
   {
     id: 23,
@@ -589,6 +610,7 @@ Atlan 2: "Bebas sih bebas. Tapi lihat mereka sibuk rapat, sibuk ngurus ini itu..
 "Ya Rayah, win msafar trouh taaya wa twali..."
 "Habibi ya nur el-ain, ya sakin khayali..."
 (Tarian Dabke dengan hentakan kaki yang kompak dan energik)`,
+    posterUrl: "/Acara/acara23.jpg"
   },
   {
     id: 24,
@@ -605,6 +627,7 @@ Atlan 2: "Bebas sih bebas. Tapi lihat mereka sibuk rapat, sibuk ngurus ini itu..
     mcScript: `(MC memberikan narasi diiringi musik oriental)
 "Keseimbangan adalah kunci kehidupan. Terlalu cepat ia akan jatuh, terlalu lambat ia akan terhenti."
 "Lihatlah Art of Balance! Diabolo menari di atas tali, melawan gravitasi, membelah udara dengan presisi mutlak!"`,
+    posterUrl: "/Acara/acara24.jpg"
   },
   {
     id: 25,
@@ -623,6 +646,7 @@ Atlan 2: "Bebas sih bebas. Tapi lihat mereka sibuk rapat, sibuk ngurus ini itu..
 "Tiger! Fire! Cyber! Fiber! Diver! Viber! Jya Jya!"
 "Romansu! Thunder Snake!"
 (Lautan lightstick oranye menyala dan berputar dalam kegelapan membentuk formasi bintang)`,
+    posterUrl: "/Acara/acara25.jpg"
   },
   {
     id: 26,
@@ -640,6 +664,7 @@ Atlan 2: "Bebas sih bebas. Tapi lihat mereka sibuk rapat, sibuk ngurus ini itu..
 "E Mambo Simbo... E Mambo Simbo..."
 "Tong basudara, dari ujung ke ujung!"
 (Tarian enerjik yang menggambarkan persatuan masyarakat Timur dengan senyum lebar)`,
+    posterUrl: "/Acara/acara26.jpg"
   },
   {
     id: 27,
@@ -657,6 +682,7 @@ Atlan 2: "Bebas sih bebas. Tapi lihat mereka sibuk rapat, sibuk ngurus ini itu..
 Pijar: "Kita semua adalah cahaya. Mudabbir yang mendidik, Atlan yang mencari jati diri, Azka yang belajar sabar, dan Bintang yang menaungi."
 "Inilah Gontor. Menggembleng besi menjadi baja. Membakar kayu menjadi pijar api yang menerangi."
 (Lampu menyala terang. Para aktor bergandengan tangan, siap menyambut Grand Closing.)`,
+    posterUrl: "/Acara/acara27.jpg"
   },
   {
     id: 28,
@@ -692,7 +718,17 @@ Nyalakan api kebersamaan
 Wujudkan idealisme kehidupan!
 
 (Dinyanyikan bersama seluruh siswa kelas 5 KMI)`,
+    posterUrl: "/Acara/acara28.jpg"
   },
+];
+
+export const sponsors = [
+  { name: "Darussalam Press", logo: "/Sponsor/1.jpg" },
+  { name: "La Tansa", logo: "/Sponsor/2.jpg" },
+  { name: "Gontor TV", logo: "/Sponsor/3.jpg" },
+  { name: "UNIDA Gontor", logo: "/Sponsor/4.jpg" },
+  { name: "BMT La Tansa", logo: "/Sponsor/5.jpg" },
+  { name: "Koperasi Pelajar", logo: "/Sponsor/6.jpg" },
 ];
 
 export const categories = [

@@ -9,6 +9,7 @@ import Performances from "./components/Performances";
 import RundownSequence from "./components/RundownSequence";
 import Timeline from "./components/Timeline";
 import Judges from "./components/Judges";
+import Sponsors from "./components/Sponsors";
 import { Ticker, Footer } from "./components/Footer";
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
           <RundownSequence />
           <Timeline />
           <Judges />
+          <Sponsors />
           <Footer />
         </>
       )}

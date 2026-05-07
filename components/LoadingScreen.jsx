@@ -67,7 +67,7 @@ export default function LoadingScreen({ onDone }) {
                   </svg>
                   <div style={{
                     position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
-                    fontFamily: "'Bebas Neue', cursive", fontSize: 24, color: "#111827", gap: 4
+                    fontFamily: "'Bebas Neue', cursive", fontSize: 36, color: "#111827", gap: 6, fontWeight: 700
                   }}>
                     <span style={{ color: "#FF6B00" }}>5</span>
                     <span>{Math.min(Math.round(progress), 101)}</span>
