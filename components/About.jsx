@@ -30,75 +30,109 @@ function Fade({ children, delay = 0, style = {} }) {
 // ── Interactive Philosophy Component ──
 function InteractivePhilosophy() {
   const [activeIdx, setActiveIdx] = useState(0);
+  const containerRef = useRef(null);
 
-  // Positions for the arrows pointing from the central logo to the surrounding cards
-  // This is a simplified conceptual layout: logo in center, items around it.
-  // For mobile, it'll stack gracefully.
+  // Circular layout logic
+  const radius = 140; // distance from center
+  const total = logoPhilosophy.length;
 
   return (
     <div style={{ position: "relative", marginTop: "4rem", marginBottom: "4rem" }}>
       {/* Background soft circle */}
-      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "clamp(300px, 80vw, 600px)", height: "clamp(300px, 80vw, 600px)", borderRadius: "50%", background: "radial-gradient(circle, rgba(255,107,0,0.04) 0%, transparent 70%)", zIndex: 0, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "clamp(400px, 90vw, 700px)", height: "clamp(400px, 90vw, 700px)", borderRadius: "50%", background: "radial-gradient(circle, rgba(255,107,0,0.06) 0%, transparent 70%)", zIndex: 0, pointerEvents: "none" }} />
 
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative", zIndex: 1 }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative", zIndex: 1, minHeight: 600 }}>
+        
+        {/* The Interactive Ring (Hidden on very small screens, or we scale it) */}
+        <div style={{ position: "relative", width: "100%", height: 400, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "2rem" }}>
+          
+          {/* Icons in Circle */}
+          {logoPhilosophy.map((item, i) => {
+            const angle = (i * (360 / total)) - 90; // offset to start from top
+            const x = radius * Math.cos((angle * Math.PI) / 180);
+            const y = radius * Math.sin((angle * Math.PI) / 180);
 
-        {/* Interactive Center Logo */}
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }}
-          style={{ width: 280, height: 280, borderRadius: 32, background: "#FFF0E6", border: "2px solid #FDDCBF", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", position: "relative", zIndex: 10, boxShadow: "0 24px 48px rgba(255,107,0,0.15)", marginBottom: "3rem", gap: 10, padding: 20 }}
-        >
-          <img src="/logo.png" alt="Logo DA" style={{ width: "100px", height: "100px", objectFit: "contain", filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.1))" }} onError={e => e.target.style.display = 'none'} />
-          <img src="/Typo DA.png" alt="Typo DA" style={{ width: "180px", height: "auto", objectFit: "contain", filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.1))" }} onError={e => e.target.style.display = 'none'} />
-
-          {/* Pulsing ring behind logo */}
-          <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0, 0.3] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            style={{ position: "absolute", inset: -10, borderRadius: 40, border: "2px solid #FF6B00", zIndex: -1 }} />
-        </motion.div>
-
-        {/* Philosophy Details Viewer */}
-        <div style={{ width: "100%", maxWidth: 800, background: "#fff", borderRadius: 24, border: "1px solid #E5E7EB", overflow: "hidden", boxShadow: "0 12px 32px rgba(0,0,0,0.05)" }}>
-          {/* Tabs/Selectors */}
-          <div style={{ display: "flex", overflowX: "auto", background: "#F9FAFB", borderBottom: "1px solid #E5E7EB", scrollbarWidth: "none" }}>
-            {logoPhilosophy.map((item, i) => (
-              <button
+            return (
+              <motion.button
                 key={i}
                 onClick={() => setActiveIdx(i)}
-                style={{ flex: "1 0 auto", padding: "1rem 1.5rem", border: "none", background: activeIdx === i ? "#fff" : "transparent", fontFamily: FONT_NEULIS, fontSize: 13, fontWeight: 700, color: activeIdx === i ? "#FF6B00" : "#6B7280", cursor: "pointer", transition: "all 0.2s", borderBottom: activeIdx === i ? "2px solid #FF6B00" : "2px solid transparent", position: "relative" }}
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, type: "spring" }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                style={{
+                  position: "absolute",
+                  left: `calc(50% + ${x}px - 32px)`,
+                  top: `calc(50% + ${y}px - 32px)`,
+                  width: 64, height: 64, borderRadius: "50%",
+                  background: activeIdx === i ? "#FF6B00" : "#fff",
+                  border: `2px solid ${activeIdx === i ? "#FF6B00" : "#E5E7EB"}`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  boxShadow: activeIdx === i ? "0 8px 20px rgba(255,107,0,0.3)" : "0 4px 12px rgba(0,0,0,0.05)",
+                  cursor: "pointer", zIndex: 20, overflow: "hidden", padding: 8
+                }}
               >
-                {item.title}
-                {activeIdx === i && (
-                  <motion.div layoutId="philTab" style={{ position: "absolute", bottom: -2, left: 0, right: 0, height: 2, background: "#FF6B00" }} />
+                {item.icon.startsWith("/") || item.icon.includes(".") ? (
+                  <img src={item.icon} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "contain", filter: activeIdx === i ? "brightness(0) invert(1)" : "none" }} />
+                ) : (
+                  <span style={{ fontFamily: FONT_WONDRA, fontSize: 24, fontWeight: 700, color: activeIdx === i ? "#fff" : "#FF6B00" }}>{item.icon}</span>
                 )}
-              </button>
-            ))}
-          </div>
+              </motion.button>
+            );
+          })}
 
-          {/* Active Content */}
-          <div style={{ padding: "3rem 2rem", position: "relative", minHeight: 220, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            {logoPhilosophy.map((item, i) => (
-              activeIdx === i && (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 10, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-                  style={{ textAlign: "center", maxWidth: 600 }}
-                >
-                  <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 64, height: 64, borderRadius: 16, background: "#FFF0E6", color: "#FF6B00", fontSize: 24, fontWeight: "bold", fontFamily: FONT_WONDRA, marginBottom: 20, border: "1px solid #FDDCBF", overflow: "hidden" }}>
-                    {item.icon.startsWith("/") || item.icon.includes(".") ? (
-                      <img src={item.icon} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "contain", padding: 8 }} onError={e => { e.target.style.display = 'none'; e.target.parentElement.innerText = item.title.substring(0, 1); }} />
-                    ) : (
-                      item.icon
-                    )}
-                  </div>
-                  <h4 style={{ fontFamily: FONT_BEBAS, fontSize: "clamp(28px, 4vw, 40px)", color: "#111827", marginBottom: 16, letterSpacing: "0.05em" }}>
-                    {item.title}
-                  </h4>
-                  <p style={{ fontFamily: FONT_NEULIS, fontSize: 16, color: "#4B5563", lineHeight: 1.8 }}>
-                    {item.desc}
-                  </p>
-                </motion.div>
-              )
-            ))}
-          </div>
+          {/* Lines from center to icons */}
+          <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 5, pointerEvents: "none" }}>
+            {logoPhilosophy.map((_, i) => {
+              const angle = (i * (360 / total)) - 90;
+              const x = radius * Math.cos((angle * Math.PI) / 180);
+              const y = radius * Math.sin((angle * Math.PI) / 180);
+              return (
+                <line 
+                  key={i} 
+                  x1="50%" y1="50%" x2={`calc(50% + ${x}px)`} y2={`calc(50% + ${y}px)`} 
+                  stroke={activeIdx === i ? "#FF6B00" : "#F3F4F6"} 
+                  strokeWidth={activeIdx === i ? 2 : 1} 
+                  strokeDasharray={activeIdx === i ? "none" : "4 4"}
+                />
+              );
+            })}
+          </svg>
+
+          {/* Central Logo */}
+          <motion.div
+            animate={{ rotate: [0, 2, -2, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            style={{ width: 140, height: 140, borderRadius: 32, background: "#fff", border: "2px solid #FDDCBF", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", position: "relative", zIndex: 10, boxShadow: "0 20px 40px rgba(0,0,0,0.1)", padding: 15 }}
+          >
+            <img src="/logo.png" alt="Center" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+          </motion.div>
+        </div>
+
+        {/* Content Viewer (Smooth Transition) */}
+        <div style={{ width: "100%", maxWidth: 650, position: "relative" }}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIdx}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+              style={{ textAlign: "center", background: "#fff", padding: "2.5rem", borderRadius: 24, border: "1px solid #F3F4F6", boxShadow: "0 10px 30px rgba(0,0,0,0.03)" }}
+            >
+              <div style={{ display: "inline-flex", padding: "8px 20px", borderRadius: 99, background: "#FFF0E6", color: "#FF6B00", fontFamily: FONT_NEULIS, fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>
+                FILOSOFI ELEMEN
+              </div>
+              <h4 style={{ fontFamily: FONT_BEBAS, fontSize: "clamp(32px, 5vw, 48px)", color: "#111827", marginBottom: 16, letterSpacing: "0.05em", lineHeight: 1 }}>
+                {logoPhilosophy[activeIdx].title}
+              </h4>
+              <p style={{ fontFamily: FONT_NEULIS, fontSize: 16, color: "#4B5563", lineHeight: 1.8, margin: 0 }}>
+                {logoPhilosophy[activeIdx].desc}
+              </p>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
       </div>
@@ -144,7 +178,7 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1, rotate: -8, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ type: "spring", damping: 15, stiffness: 100, delay: 0.3 }}
-                style={{ position: "absolute", top: -35, right: -25, width: 140, height: "auto", zIndex: 20, filter: "drop-shadow(0 8px 16px rgba(255,107,0,0.25))", transformOrigin: "bottom right" }}
+                style={{ position: "absolute", top: -35, right: -25, width: "clamp(100px, 20vw, 140px)", height: "auto", zIndex: 20, filter: "drop-shadow(0 8px 16px rgba(255,107,0,0.25))", transformOrigin: "bottom right" }}
                 onError={e => e.target.style.display = 'none'}
               />
 

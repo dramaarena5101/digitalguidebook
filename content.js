@@ -13,35 +13,28 @@ export const eventInfo = {
 
 export const logoPhilosophy = [
   {
-    title: 'Tulisan "D"',
-    desc: 'Mengambil dari kata "Drama"',
+    title: 'Tulisan "D" dan "A"',
+    desc: 'Mengambil dari kata "Drama Arena"',
     icon: "/DA.png",
+
   },
-  {
-    title: 'Tulisan "A"',
-    desc: 'Mengambil dari kata "Arena"',
-    icon: "A",
+    {
+    title: "5 Titik dan Cahaya",
+    desc: "5 Titik: Melambangkan Panca Jiwa Pondok Modern Darussalam Gontor: Keikhlasan, kesederhanaan, berdikari, Ukhuwah Islamiyah, dan kebebasan. Cahaya: Seperti lampu kecil yang menyala dalam kegelapan, kelas 5 dituntut tidak hanya menyimpan cahaya bagi dirinya, tetapi juga menyalakan cahaya di sekelilingnya.",
+    icon: "/DA2.png",
   },
+
   {
     title: "4 Sisi Garis",
     desc: "Melambangkan Moto Pondok Modern Darussalam Gontor: Berbudi tinggi, berbadan sehat, berpengetahuan luas, dan berpikiran bebas.",
-    icon: "◇",
+    icon: "/DA3.png",
   },
   {
     title: "4 Sisi Berbentuk Kotak",
     desc: "Melambangkan lingkup persatuan dan kebersamaan, yaitu dengan menyatukan perbedaan dalam bingkai yang sama.",
-    icon: "□",
-  },
-  {
-    title: "5 Titik",
-    desc: "Melambangkan Panca Jiwa Pondok Modern Darussalam Gontor: Keikhlasan, kesederhanaan, berdikari, Ukhuwah Islamiyah, dan kebebasan.",
-    icon: "✦",
-  },
-  {
-    title: "Cahaya (An-Nur)",
-    desc: "Seperti lampu kecil yang menyala dalam kegelapan, kelas 5 dituntut tidak hanya menyimpan cahaya bagi dirinya, tetapi juga menyalakan cahaya di sekelilingnya.",
-    icon: "☀",
-  },
+    icon: "DA3.png",
+  },  
+
 ];
 
 export const eventObjectives = [
@@ -330,7 +323,7 @@ Syukur Alhamdulillah, Alhamdulillah
 Atas semua yang Engkau berikan
 Syukur Alhamdulillah, Alhamdulillah
 Hati ini penuh dengan rasa terima kasih`,
-    posterUrl: "/Acara/acara9.jpg"
+    posterUrl: "/Acara/Nasyid.jpg"
   },
   {
     id: 10,
@@ -754,13 +747,13 @@ export const choirs = [
 ];
 
 export const sponsors = [
-  { name: "Darussalam Press", logo: "/sponsor/1.png" },
-  { name: "La Tansa", logo: "/sponsor/2.png" },
-  { name: "Gontor TV", logo: "/sponsor/3.png" },
-  { name: "UNIDA Gontor", logo: "/sponsor/4.png" },
-  { name: "BMT La Tansa", logo: "/sponsor/5.png" },
-  { name: "Koperasi Pelajar", logo: "/sponsor/6.png" },
-  { name: "Darussalam Press", logo: "/sponsor/1.png" },
-  { name: "La Tansa", logo: "/sponsor/2.png" },
-  { name: "Gontor TV", logo: "/sponsor/3.png" },
+  { name: "Darussalam Press", logo: "/Sponsor/1.png" },
+  { name: "La Tansa", logo: "/Sponsor/2.png" },
+  { name: "Gontor TV", logo: "/Sponsor/3.png" },
+  { name: "UNIDA Gontor", logo: "/Sponsor/4.png" },
+  { name: "BMT La Tansa", logo: "/Sponsor/5.png" },
+  { name: "Koperasi Pelajar", logo: "/Sponsor/6.png" },
+  { name: "Darussalam Press", logo: "/Sponsor/1.png" },
+  { name: "La Tansa", logo: "/Sponsor/2.png" },
+  { name: "Gontor TV", logo: "/Sponsor/3.png" },
 ];

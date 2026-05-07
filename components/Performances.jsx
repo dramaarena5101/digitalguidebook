@@ -155,14 +155,14 @@ function Modal({ perf, onClose }) {
           </div>
 
           {/* Controls */}
-          <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 20 }}>
             <button 
               onClick={() => setView("detail")}
               style={{ padding: "8px 16px", borderRadius: 99, border: "none", background: view === "detail" ? "#111827" : "#F3F4F6", color: view === "detail" ? "#fff" : "#6B7280", fontFamily: FONT.neulis, fontSize: 11, fontWeight: 700, letterSpacing: "0.05em", cursor: "pointer", transition: "all 0.2s" }}
             >
               DETAIL TEKS
             </button>
-            {perf.posterUrl && (
+            {perf.posterUrl && !perf.posterUrl.includes("acara") && (
               <button 
                 onClick={() => setView("poster")}
                 style={{ padding: "8px 16px", borderRadius: 99, border: "none", background: view === "poster" ? "#FF6B00" : "#F3F4F6", color: view === "poster" ? "#fff" : "#6B7280", fontFamily: FONT.neulis, fontSize: 11, fontWeight: 700, letterSpacing: "0.05em", cursor: "pointer", transition: "all 0.2s" }}
@@ -246,21 +246,29 @@ function Modal({ perf, onClose }) {
               <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}
                 style={{ height: "100%", minHeight: 450, borderRadius: 16, overflow: "hidden", background: "#F9FAFB", border: "1px solid #E5E7EB", display: "flex", flexDirection: "column", position: "relative" }}>
                 <div style={{ padding: "12px 16px", background: "#fff", borderBottom: "1px solid #E5E7EB", fontFamily: FONT.neulis, fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: "#6B7280", display: "flex", justifyContent: "space-between", zIndex: 5 }}>
-                  <span>PRATINJAU DESAIN</span>
-                  <span style={{ color: "#FF6B00" }}>HALAMAN {perf.pdfPage || perf.order}</span>
+                   <span>PRATINJAU GUIDEBOOK</span>
+                   <span style={{ color: "#FF6B00" }}>HALAMAN {perf.pdfPage || perf.order}</span>
                 </div>
-                <iframe 
-                  src={`/guidebook.pdf#page=${perf.pdfPage || perf.order}&view=Fit&toolbar=0&navpanes=0&scrollbar=0`} 
-                  title="PDF Preview"
-                  style={{ width: "100%", flex: 1, border: "none", background: "#fff" }}
-                />
-                <button 
-                  onClick={() => window.open(`/guidebook.pdf#page=${perf.pdfPage || perf.order}&view=Fit`, '_blank')}
-                  style={{ position: "absolute", bottom: 16, right: 16, padding: "10px 20px", borderRadius: 99, background: "rgba(17,24,39,0.8)", backdropFilter: "blur(4px)", color: "#fff", border: "none", cursor: "pointer", fontFamily: FONT.neulis, fontSize: 10, fontWeight: 700, letterSpacing: "0.05em", display: "flex", alignItems: "center", gap: 8 }}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                  LIHAT FULLSCREEN
-                </button>
+                <div style={{ flex: 1, position: "relative" }}>
+                  <iframe 
+                    src={`https://docs.google.com/viewer?url=${window.location.origin}/guidebook.pdf&embedded=true#page=${perf.pdfPage || perf.order}`} 
+                    title="PDF Preview"
+                    style={{ width: "100%", height: "100%", border: "none" }}
+                  />
+                  {/* Overlay to hint interaction or protect scroll */}
+                  <div style={{ position: "absolute", bottom: 80, left: 0, right: 0, padding: "10px", background: "rgba(255,255,255,0.9)", textAlign: "center", fontSize: 10, fontFamily: FONT.neulis, fontWeight: 700, color: "#6B7280", borderTop: "1px solid #E5E7EB", borderBottom: "1px solid #E5E7EB", zIndex: 2 }}>
+                    Gunakan tombol di bawah untuk melihat versi lengkap / fullscreen
+                  </div>
+                </div>
+                <div style={{ padding: "1rem", background: "#fff", borderTop: "1px solid #E5E7EB", display: "flex", justifyContent: "center" }}>
+                  <button 
+                    onClick={() => window.open(`/guidebook.pdf#page=${perf.pdfPage || perf.order}`, '_blank')}
+                    style={{ padding: "12px 24px", borderRadius: 12, background: "#111827", color: "#fff", border: "none", cursor: "pointer", fontFamily: FONT.neulis, fontSize: 12, fontWeight: 700, letterSpacing: "0.05em", display: "flex", alignItems: "center", gap: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    BUKA FULLSCREEN / DOWNLOAD
+                  </button>
+                </div>
               </motion.div>
             )}
 
@@ -321,6 +329,15 @@ export default function Performances() {
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
               LIHAT FULL GUIDEBOOK
+            </motion.button>
+            <motion.button 
+              whileHover={{ scale: 1.05, border: "1px solid #FF6B00", color: "#FF6B00" }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => window.open('/Buku Naskah Drama Arena 5101.pdf', '_blank')}
+              style={{ width: "fit-content", padding: "10px 24px", borderRadius: 999, background: "#fff", border: "1px solid #E5E7EB", color: "#6B7280", cursor: "pointer", fontFamily: FONT.neulis, fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", display: "flex", alignItems: "center", gap: 8, transition: "all 0.2s" }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              BUKU NASKAH DA 5101
             </motion.button>
           </div>
         </motion.div>
