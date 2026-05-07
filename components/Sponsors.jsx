@@ -25,11 +25,11 @@ export default function Sponsors() {
               onMouseEnter={e => e.currentTarget.style.opacity = "1"}
               onMouseLeave={e => e.currentTarget.style.opacity = "0.8"}>
               <div style={{ width: 80, height: 80, borderRadius: 16, background: "#fff", border: "1px solid #E5E7EB", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}>
-                <img src={s.logo} alt={s.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} 
-                  onError={e => { 
-                    e.target.style.display = "none"; 
-                    e.target.parentElement.innerHTML = `<span style="font-family:${FONT_BEBAS}; font-size:16px; color:#FF6B00">${s.name.substring(0,2)}</span>`; 
-                  }} 
+                <img 
+                  src={s.logo} 
+                  alt={s.name} 
+                  style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} 
+                  loading="lazy"
                 />
               </div>
               <span style={{ fontFamily: FONT_NEULIS, fontSize: 14, fontWeight: 700, color: "#374151", letterSpacing: "0.05em" }}>{s.name}</span>

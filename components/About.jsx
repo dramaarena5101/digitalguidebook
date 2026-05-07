@@ -82,8 +82,12 @@ function InteractivePhilosophy() {
                   initial={{ opacity: 0, y: 10, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
                   style={{ textAlign: "center", maxWidth: 600 }}
                 >
-                  <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 56, height: 56, borderRadius: 16, background: "#FFF0E6", color: "#FF6B00", fontSize: 24, fontWeight: "bold", fontFamily: FONT_WONDRA, marginBottom: 20, border: "1px solid #FDDCBF" }}>
-                    {item.icon}
+                  <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 64, height: 64, borderRadius: 16, background: "#FFF0E6", color: "#FF6B00", fontSize: 24, fontWeight: "bold", fontFamily: FONT_WONDRA, marginBottom: 20, border: "1px solid #FDDCBF", overflow: "hidden" }}>
+                    {item.icon.startsWith("/") || item.icon.includes(".") ? (
+                      <img src={item.icon} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "contain", padding: 8 }} onError={e => { e.target.style.display = 'none'; e.target.parentElement.innerText = item.title.substring(0, 1); }} />
+                    ) : (
+                      item.icon
+                    )}
                   </div>
                   <h4 style={{ fontFamily: FONT_BEBAS, fontSize: "clamp(28px, 4vw, 40px)", color: "#111827", marginBottom: 16, letterSpacing: "0.05em" }}>
                     {item.title}
@@ -126,24 +130,24 @@ export default function About() {
               <div style={{ fontFamily: FONT_NEULIS, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 16 }}>Nama Acara</div>
               <div style={{ fontFamily: FONT_WONDRA, fontSize: 36, fontWeight: 700, color: "#111827", marginBottom: 16, lineHeight: 1.15 }}>{eventInfo.name}</div>
               <p style={{ fontFamily: FONT_NEULIS, fontSize: 15, color: "#6B7280", lineHeight: 1.75 }}>
-                Pagelaran Seni Akbar siswa kelas 5 KMI Pondok Modern Darussalam Gontor periode {eventInfo.period}.
+                Pagelaran Seni siswa kelas 5 KMI Pondok Modern Darussalam Gontor periode {eventInfo.period}.
               </p>
             </div>
           </Fade>
           <Fade delay={0.15}>
             <div style={{ ...S.card, background: "#FFF0E6", border: "1px solid #FDDCBF", position: "relative", overflow: "visible" }}>
               {/* Jargon Image */}
-              <motion.img 
-                src="/jargon.png" 
-                alt="Jargon DA" 
+              <motion.img
+                src="/jargon.png"
+                alt="Jargon DA"
                 initial={{ opacity: 0, scale: 0.5, rotate: 15, x: 20 }}
                 whileInView={{ opacity: 1, scale: 1, rotate: -8, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ type: "spring", damping: 15, stiffness: 100, delay: 0.3 }}
-                style={{ position: "absolute", top: -35, right: -25, width: 140, height: "auto", zIndex: 20, filter: "drop-shadow(0 8px 16px rgba(255,107,0,0.25))", transformOrigin: "bottom right" }} 
+                style={{ position: "absolute", top: -35, right: -25, width: 140, height: "auto", zIndex: 20, filter: "drop-shadow(0 8px 16px rgba(255,107,0,0.25))", transformOrigin: "bottom right" }}
                 onError={e => e.target.style.display = 'none'}
               />
-              
+
               <div style={{ position: "absolute", top: -40, right: -40, width: 180, height: 180, borderRadius: "50%", background: "rgba(255,107,0,0.1)", filter: "blur(40px)" }} />
               <div style={{ fontFamily: FONT_NEULIS, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#FF6B00", marginBottom: 16, position: "relative" }}>Moto Acara</div>
               <div style={{ position: "relative", zIndex: 1 }}>

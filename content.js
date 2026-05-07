@@ -15,7 +15,7 @@ export const logoPhilosophy = [
   {
     title: 'Tulisan "D"',
     desc: 'Mengambil dari kata "Drama"',
-    icon: "D",
+    icon: "/DA.png",
   },
   {
     title: 'Tulisan "A"',
@@ -369,7 +369,7 @@ Tari zapin langkah bersusun
 Bawa rebana irama dialun
 Kami datang membawa santun
 Moga hadirin semuanya rukun.`,
-    posterUrl: "/Acara/acara11.jpg"
+    posterUrl: "/Acara/Ya Maulay Ya Maulay.jpg"
   },
   {
     id: 12,
@@ -388,7 +388,7 @@ Moga hadirin semuanya rukun.`,
 (Penari menghentakkan kaki, memamerkan kostum meriah dengan hiasan kepala bulu-bulu)
 "Sura dira jayaning rat, lebur dening pangastuti!"
 (Kejahatan sebesar apapun akan lebur oleh kebaikan)`,
-    posterUrl: "/Acara/acara12.jpg"
+    posterUrl: "/Acara/Black Mask Rythm.jpg"
   },
   {
     id: 13,
@@ -406,7 +406,7 @@ Moga hadirin semuanya rukun.`,
 "Euy! Euy! Maju terus pantang mundur!"
 "Singa depa jadi macan, urang sunda wani tarung!"
 (Para penari mengusung sisingaan sambil melakukan gerakan akrobatik dan pencak silat)`,
-    posterUrl: "/Acara/acara13.jpg"
+    posterUrl: "/Acara/Udal Adul Wel.jpg"
   },
   {
     id: 14,
@@ -425,7 +425,7 @@ Moga hadirin semuanya rukun.`,
 "Cendol dawet, lima ratusan, nggak pakai ketan!"
 "Tarik sis, semongko!"
 (Penari melakukan gerakan asyik dan kompak dengan ritme ska dan dangdut)`,
-    posterUrl: "/Acara/acara14.jpg"
+    posterUrl: "/Acara/SKA N DUT.jpg"
   },
   {
     id: 15,
@@ -532,11 +532,11 @@ Bersama menuju cahaya yang nyata`,
     description: "Penampilan tari semi barat yang ditampilkan oleh santri dengan iringan musik yang dimainkan menggunakan mulut atau yang dikenal dengan beatbox.",
     emoji: "🎤",
     color: "#FF6B00",
-    posterUrl: "/Acara/acara19.jpg",
     lyrics: `(Suara beatbox dimulai secara akapela)
 "B t k t b t k t..."
 "Boom pf kach... wika wika scratch..."
 (Penari hip-hop mulai memasuki panggung, menyesuaikan gerakan popping dan locking dengan irama mulut)`,
+    posterUrl: "/Acara/Infinity Beatbox.jpg"
   },
   {
     id: 20,
@@ -550,11 +550,11 @@ Bersama menuju cahaya yang nyata`,
     description: "Le le re dance atau yang lebih dikenal dengan tari India adalah bentuk seni kino yang menggabungkan antara spiritual, ritme, dan cerita, berakar dari teks suci Natya Shastra.",
     emoji: "💃",
     color: "#cc4400",
-    posterUrl: "/Acara/acara20.jpg",
     lyrics: `(Irama musik Bollywood yang meriah)
 "Ta thai thai tat, aa thai thai tat!"
 "Chaiyya chaiyya, chal chaiyya chaiyya..."
 (Gerakan tangan mudra berpadu dengan hentakan kaki gungroo yang rancak)`,
+    posterUrl: "/Acara/Le Le Re Dance.jpg"
   },
   {
     id: 21,
@@ -610,7 +610,7 @@ Atlan 2: "Bebas sih bebas. Tapi lihat mereka sibuk rapat, sibuk ngurus ini itu..
 "Ya Rayah, win msafar trouh taaya wa twali..."
 "Habibi ya nur el-ain, ya sakin khayali..."
 (Tarian Dabke dengan hentakan kaki yang kompak dan energik)`,
-    posterUrl: "/Acara/acara23.jpg"
+    posterUrl: "/Acara/Raqs Arabian.jpg"
   },
   {
     id: 24,
@@ -627,7 +627,7 @@ Atlan 2: "Bebas sih bebas. Tapi lihat mereka sibuk rapat, sibuk ngurus ini itu..
     mcScript: `(MC memberikan narasi diiringi musik oriental)
 "Keseimbangan adalah kunci kehidupan. Terlalu cepat ia akan jatuh, terlalu lambat ia akan terhenti."
 "Lihatlah Art of Balance! Diabolo menari di atas tali, melawan gravitasi, membelah udara dengan presisi mutlak!"`,
-    posterUrl: "/Acara/acara24.jpg"
+    posterUrl: "/Acara/Art of Balance.jpg"
   },
   {
     id: 25,
@@ -646,7 +646,7 @@ Atlan 2: "Bebas sih bebas. Tapi lihat mereka sibuk rapat, sibuk ngurus ini itu..
 "Tiger! Fire! Cyber! Fiber! Diver! Viber! Jya Jya!"
 "Romansu! Thunder Snake!"
 (Lautan lightstick oranye menyala dan berputar dalam kegelapan membentuk formasi bintang)`,
-    posterUrl: "/Acara/acara25.jpg"
+    posterUrl: "/Acara/Hikaru Toki DA.jpg"
   },
   {
     id: 26,
@@ -664,7 +664,7 @@ Atlan 2: "Bebas sih bebas. Tapi lihat mereka sibuk rapat, sibuk ngurus ini itu..
 "E Mambo Simbo... E Mambo Simbo..."
 "Tong basudara, dari ujung ke ujung!"
 (Tarian enerjik yang menggambarkan persatuan masyarakat Timur dengan senyum lebar)`,
-    posterUrl: "/Acara/acara26.jpg"
+    posterUrl: "/Acara/Tong Basudara.jpg"
   },
   {
     id: 27,
@@ -722,14 +722,7 @@ Wujudkan idealisme kehidupan!
   },
 ];
 
-export const sponsors = [
-  { name: "Darussalam Press", logo: "/Sponsor/1.jpg" },
-  { name: "La Tansa", logo: "/Sponsor/2.jpg" },
-  { name: "Gontor TV", logo: "/Sponsor/3.jpg" },
-  { name: "UNIDA Gontor", logo: "/Sponsor/4.jpg" },
-  { name: "BMT La Tansa", logo: "/Sponsor/5.jpg" },
-  { name: "Koperasi Pelajar", logo: "/Sponsor/6.jpg" },
-];
+
 
 export const categories = [
   {
@@ -758,4 +751,16 @@ export const choirs = [
   { title: "Mars Darussalam", desc: "Lagu kebanggaan Pondok Modern Darussalam Gontor" },
   { title: "Spontan (uhuy)", desc: "Lagu ceria tentang kehidupan di Darussalam" },
   { title: "Ini Abadi", desc: "Lagu tentang kenangan yang tak terlupakan" },
+];
+
+export const sponsors = [
+  { name: "Darussalam Press", logo: "/sponsor/1.png" },
+  { name: "La Tansa", logo: "/sponsor/2.png" },
+  { name: "Gontor TV", logo: "/sponsor/3.png" },
+  { name: "UNIDA Gontor", logo: "/sponsor/4.png" },
+  { name: "BMT La Tansa", logo: "/sponsor/5.png" },
+  { name: "Koperasi Pelajar", logo: "/sponsor/6.png" },
+  { name: "Darussalam Press", logo: "/sponsor/1.png" },
+  { name: "La Tansa", logo: "/sponsor/2.png" },
+  { name: "Gontor TV", logo: "/sponsor/3.png" },
 ];

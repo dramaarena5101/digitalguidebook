@@ -50,7 +50,7 @@ export function Footer() {
               </div>
             </div>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "#6B7280", lineHeight: 1.8, maxWidth: 320 }}>
-              Pagelaran Seni Akbar Siswa Kelas 5 KMI Pondok Modern Darussalam Gontor, mengangkat tema{" "}
+              Pagelaran Seni Siswa Kelas 5 KMI Pondok Modern Darussalam Gontor, mengangkat tema{" "}
               <em style={{ color: "#374151", fontWeight: 600 }}>"Nyalakan Api Kebersamaan, Wujudkan Idealisme Kehidupan"</em>.
             </p>
           </div>
