@@ -747,13 +747,13 @@ export const choirs = [
 ];
 
 export const sponsors = [
-  { name: "Darussalam Press", logo: "/Sponsor/1.png" },
-  { name: "La Tansa", logo: "/Sponsor/2.png" },
-  { name: "Gontor TV", logo: "/Sponsor/3.png" },
-  { name: "UNIDA Gontor", logo: "/Sponsor/4.png" },
-  { name: "BMT La Tansa", logo: "/Sponsor/5.png" },
-  { name: "Koperasi Pelajar", logo: "/Sponsor/6.png" },
-  { name: "Darussalam Press", logo: "/Sponsor/1.png" },
-  { name: "La Tansa", logo: "/Sponsor/2.png" },
-  { name: "Gontor TV", logo: "/Sponsor/3.png" },
+  { name: "Pos Indonesia", logo: "/Sponsor/1.png" },
+  { name: "Batik Fresa", logo: "/Sponsor/2.png" },
+  { name: "Ersa Wisata", logo: "/Sponsor/3.png" },
+  { name: "Pegadaian", logo: "/Sponsor/4.png" },
+  { name: "PT Petra Nusa Kencana", logo: "/Sponsor/5.png" },
+  { name: "PT Nur Alharamain Group", logo: "/Sponsor/6.png" },
+  { name: "PT Tirta Jaya Laksana", logo: "/Sponsor/7.png" },
+  { name: "Sarung Tenun Mangga", logo: "/Sponsor/8.png" },
+  { name: "Sendang Buah", logo: "/Sponsor/9.png" },
 ];

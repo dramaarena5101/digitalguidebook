@@ -24,11 +24,32 @@ export default function Sponsors() {
             <div key={i} style={{ display: "flex", alignItems: "center", gap: 15, opacity: 0.8, transition: "opacity 0.3s" }}
               onMouseEnter={e => e.currentTarget.style.opacity = "1"}
               onMouseLeave={e => e.currentTarget.style.opacity = "0.8"}>
-              <div style={{ width: 80, height: 80, borderRadius: 16, background: "#fff", border: "1px solid #E5E7EB", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}>
+              <div style={{ 
+                width: 140, 
+                height: 70, 
+                borderRadius: 12, 
+                background: "#fff", 
+                border: "1px solid #E5E7EB", 
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center", 
+                overflow: "hidden", 
+                padding: "12px", 
+                boxShadow: "0 4px 12px rgba(0,0,0,0.03)" 
+              }}>
                 <img 
                   src={s.logo} 
                   alt={s.name} 
-                  style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} 
+                  style={{ 
+                    maxWidth: "100%", 
+                    maxHeight: "100%", 
+                    objectFit: "contain", 
+                    display: "block",
+                    filter: "grayscale(100%) brightness(0.8)", // Initial professional look
+                    transition: "all 0.3s"
+                  }} 
+                  onMouseEnter={e => e.currentTarget.style.filter = "grayscale(0%) brightness(1)"}
+                  onMouseLeave={e => e.currentTarget.style.filter = "grayscale(100%) brightness(0.8)"}
                   loading="lazy"
                 />
               </div>
